@@ -10,7 +10,7 @@ B1 is a small retrieval-augmented question-answering assistant that answers plai
 
 - Accepts a free-text regulatory question in the Streamlit UI.
 - Embeds the question with all-MiniLM-L6-v2 and retrieves the five most relevant passages from a persistent ChromaDB vector store built from the eight source PDFs.
-- Sends the retrieved passages to Groq's llama-3.1-8b-instant model with a system prompt that requires:
+- Sends the retrieved passages to Groq's openai/gpt-oss-120b model with a system prompt that requires:
   - answers only from the provided context,
   - an inline [Document Title, Section Label] citation after every factual claim,
   - the fixed refusal string "I don't have enough information in the provided documents to answer this." when the context does not support an answer.

@@ -90,7 +90,7 @@ STAGES = [
     "embed_store.py → all-MiniLM-L6-v2 embeddings → ChromaDB (persistent"
     " vector store)",
     "User question → query_store() → top-5 relevant chunks (retrieval)",
-    "answer.py → Groq LLM (llama-3.1-8b-instant) → answer with citations",
+    "answer.py → Groq LLM (openai/gpt-oss-120b) → answer with citations",
     "guardrails.py → 4 checks: retrieval confidence, citation required,"
     " clinical refusal, out-of-corpus refusal",
     "Streamlit UI → shows answer + sources, OR a refusal message",

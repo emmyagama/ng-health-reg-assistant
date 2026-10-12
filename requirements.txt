@@ -10,3 +10,4 @@ numpy
 pymupdf
 rapidocr-onnxruntime
 svgwrite
+torchvision
