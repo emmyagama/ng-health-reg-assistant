@@ -1,0 +1,25 @@
+# How I built a grounded assistant on Nigerian health regulations and measured whether it lies
+
+## The problem
+
+A diagnostic-centre manager in Nigeria cannot answer a simple compliance question in under an afternoon. The rules governing their facility — record-keeping, required equipment, fees, registration — are spread across eight long PDFs from six different bodies: Nigeria's Data Protection Act, the NHIA insurance law, the National Health Act, state-level facility guidelines, MLSCN laboratory standards, and WHO quality manuals. Searching by hand is slow, keyword search misses things, and calling a lawyer for every question is not realistic for a small facility. I built an assistant that lets someone type a plain-English question and get back an answer drawn directly from those documents.
+
+## What the system does
+
+You ask a question in plain language. The assistant searches the eight source documents for the most relevant passages, then asks a language model to write an answer using only what it found. Every answer names the document and section it came from, so the reader can look it up. If the documents don't cover the question — for example "what is the corporate tax rate for HMOs" — the system says "I don't have enough information" rather than guess. If the question asks for medical advice ("what antibiotic dose should I give a patient"), the system refuses outright: the sources are regulatory, not clinical, and giving clinical answers would be dangerous. Nothing is remembered between questions; there are no user accounts or chat history.
+
+## Why "doesn't lie" is a real problem
+
+Large language models write text that sounds confident and well-sourced even when it is completely made up. In the industry this is called hallucination: the model fills gaps in its knowledge with plausible-sounding prose, sometimes inventing numbers, section names, or citations that don't exist. For a chatbot that writes poetry this is harmless. For something a facility manager might use to decide whether their lab is compliant — where a wrong answer could mean operating illegally, losing a licence, or mishandling patient data — it is not acceptable. The naive approach of asking the model nicely to be honest does not reliably work. Asking nicely is not a safety feature.
+
+## How I measured it
+
+I built a fixed list of 30 test questions. Twenty-five are answerable from the documents; five are deliberately unanswerable — two ask for clinical advice, three ask about topics the documents simply do not cover (corporate tax, visas). A question the documents cannot answer is exactly where a chatbot is most tempted to invent something, and exactly where an honest refusal matters most.
+
+I ran the 30 questions through the system twice and scored the answers by hand. Before the safety checks, on the first run the model happened to refuse all five unanswerable questions — 0 out of 5 invented answers. But that was partly luck: during tuning I watched it slip once. Asked how to diagnose malaria without a rapid diagnostic test, it wrote a confident, plausible paragraph describing Giemsa-stained blood smears, even citing a WHO handbook section that did not in fact say what it claimed. That is exactly the failure we cannot ship.
+
+I added four lightweight safety checks that run after the answer is written: one confirms the system found highly relevant passages to work from, one confirms the answer actually cites a document and section, one blocks clinical questions regardless of what was retrieved, and one catches questions that look clearly outside the corpus. I re-ran the same 30 questions. Result: 0 out of 5 unanswerable questions produced a fabricated answer the user could see, including the malaria question — the clinical check caught it before it was shown. On the 25 answerable questions, about three-quarters of the claims in the average answer were directly supported by a cited passage; the misses were almost all cases where a scanned document's text was too low-quality for the system to read, documented as known gaps rather than hidden.
+
+## What I'd still improve
+
+Four things, honestly. First, one of the safety checks is brittle to small formatting differences (it missed citations wrapped in the wrong style of brackets) — a small bug to fix before a wider rollout. Second, two of the eight source PDFs are scanned CamScanner images with poor text recognition, so whole sections are effectively invisible to search; those need to be re-processed or replaced. Third, the clinical-question detector fires on the phrase "emergency medical treatment" even when it appears in a legal section about facility obligations, so it needs narrowing. Finally, I would add a verification step that re-opens each cited section and confirms the claim actually appears there, rather than trusting the model to quote accurately. None of these are show-stoppers, and the system is already useful for the questions it does cover; they are the next layer of reliability work.
