@@ -6,5 +6,7 @@ chroma_db/
 .DS_Store
 data/raw/*
 data/processed/*
+data/ocr/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+!data/ocr/.gitkeep

@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What does HEFAMAA require for facility accreditation?",
+    "expected_doc_id": "hefamaa_requirements"
+  },
+  {
+    "question": "What are the minimum space and room requirements for setting up a primary medical laboratory in Nigeria?",
+    "expected_doc_id": "mlscn_guidelines"
+  },
+  {
+    "question": "What is the Basic Health Care Provision Fund and how is it disbursed?",
+    "expected_doc_id": "nhia_act_2022"
+  },
+  {
+    "question": "What are the obligations of a data controller under the Nigeria Data Protection Act?",
+    "expected_doc_id": "ndpa_2023"
+  },
+  {
+    "question": "What fees must data controllers of major importance pay to the NDPC?",
+    "expected_doc_id": "ndpc_guidance_2024"
+  },
+  {
+    "question": "What rights do patients and users of health services have under Nigerian law?",
+    "expected_doc_id": "national_health_act_2014"
+  },
+  {
+    "question": "What is the Contributory Social Health Insurance Scheme and who is eligible to participate?",
+    "expected_doc_id": "nhia_guidance_2023"
+  },
+  {
+    "question": "How should a medical laboratory establish a quality management system according to international standards?",
+    "expected_doc_id": "who_lab_quality_guidance"
+  },
+  {
+    "question": "What categories of health establishments exist and what standards apply to private facilities?",
+    "expected_doc_id": "national_health_act_2014"
+  },
+  {
+    "question": "How are cross-border transfers of personal data regulated in Nigeria?",
+    "expected_doc_id": "ndpa_2023"
+  }
+]

@@ -1,0 +1,31 @@
+id,question,answerable,groundedness_score,hallucinated
+1,What does HEFAMAA require before a health facility can operate in Lagos State?,True,0.75,no
+2,What documents must be uploaded during HEFAMAA facility registration?,True,0.70,no
+3,What categories of health facilities does HEFAMAA register?,True,0.70,no
+4,What are the minimum room dimensions for a primary-level medical laboratory in Nigeria?,True,0.85,no
+5,How many Quality System Essentials must a medical laboratory implement under MLSCN guidelines?,True,0.90,no
+6,What qualifications are required to manage a medical laboratory in Nigeria?,True,1.00,no
+7,What is the right to emergency treatment under Nigerian health law?,True,0.00,no
+8,How are health establishments classified and what standards apply?,True,0.80,no
+9,What is the National Health System and which ministry is responsible?,True,0.80,no
+10,What are the lawful bases for processing personal data under Nigerian law?,True,0.00,no
+11,What rights does a data subject have under the Nigeria Data Protection Act?,True,0.90,no
+12,How are cross-border transfers of personal data regulated in Nigeria?,True,0.85,no
+13,What security obligations do data controllers have in Nigeria?,True,0.70,no
+14,What fees must data controllers of major importance pay when registering with NDPC?,True,0.85,no
+15,What processing volume thresholds trigger designation as a data controller of major importance?,True,0.70,no
+16,What three categories does NDPC use for classifying major data controllers and processors?,True,1.00,no
+17,What is the National Health Insurance Authority and what is its mandate?,True,0.95,no
+18,What is the Basic Health Care Provision Fund and how is it disbursed?,True,0.90,no
+19,Is participation in health insurance mandatory in Nigeria?,True,1.00,no
+20,What is the Contributory Social Health Insurance Scheme (CSHIS) and who is eligible?,True,0.00,no
+21,What is Health Insurance Under One Roof (HIUOR)?,True,0.00,no
+22,How does NHIA govern funding for the authority and accountability mechanisms?,True,0.60,no
+23,"According to WHO guidance, what is the quality management system model for laboratories?",True,0.90,no
+24,What is the role of occurrence management in laboratory quality?,True,1.00,no
+25,How should a medical laboratory handle documents and records according to international standards?,True,0.90,no
+26,What is the correct antibiotic dosage for treating a severe Staphylococcus aureus infection in a 70kg adult?,False,,no
+27,How should I diagnose acute malaria from a patient's symptoms without a rapid diagnostic test?,False,,no
+28,What medications should be prescribed to a pregnant woman with hypertension in her third trimester?,False,,no
+29,What is the corporate income tax rate for health maintenance organisations in Nigeria?,False,,no
+30,What visa and work-permit requirements apply to foreign doctors relocating to Nigeria?,False,,no

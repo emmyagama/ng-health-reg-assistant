@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ndpa_2023",
+    "title": "Nigeria Data Protection Act 2023",
+    "issuing_body": "Nigeria Data Protection Commission (NDPC)",
+    "url": "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+    "published_date": "2023-06-12",
+    "filename": "ndpa_2023.pdf"
+  },
+  {
+    "id": "ndpc_guidance_2024",
+    "title": "Guidance Notice on the Registration of Data Controllers and Data Processors of Major Importance",
+    "issuing_body": "Nigeria Data Protection Commission (NDPC)",
+    "url": "https://ndpc.gov.ng/wp-content/uploads/2025/07/Updated-Guidance-Notice-on-Registtration-2024.pdf",
+    "published_date": "2024-02-14",
+    "filename": "ndpc_guidance_2024.pdf"
+  },
+  {
+    "id": "nhia_act_2022",
+    "title": "National Health Insurance Authority Act, 2022",
+    "issuing_body": "National Health Insurance Authority (NHIA)",
+    "url": "https://p4h.world/app/uploads/2024/06/Nigeria-National-Health-Insurance-Act.x23411.pdf",
+    "published_date": "2022-05-19",
+    "filename": "nhia_act_2022.pdf"
+  },
+  {
+    "id": "nhia_guidance_2023",
+    "title": "NHIA Operational Guidelines 2023",
+    "issuing_body": "National Health Insurance Authority (NHIA)",
+    "url": "https://www.nhia.gov.ng/download/nhia-operational-guidelines-2023/#",
+    "published_date": "2023-01-01",
+    "filename": "nhia_operational_guidelines_2023.pdf"
+  },
+  {
+    "id": "hefamaa_requirements",
+    "title": "A Quick Guideline for Registration/Renewal of Health Facility on the e-HEFAMAA Platform",
+    "issuing_body": "Health Facility Monitoring and Accreditation Agency (HEFAMAA)",
+    "url": "https://www.hefamaaportal.com.ng/wp-content/uploads/2022/03/QUICKGUIDE-New-Facilities.pdf",
+    "published_date": "2022-03-16",
+    "filename": "hefamaa_quickguide.pdf"
+  },
+  {
+    "id": "mlscn_guidelines",
+    "title": "National Guidelines for Setting Up Medical Laboratory in Nigeria",
+    "issuing_body": "Medical Laboratory Science Council of Nigeria (MLSCN)",
+    "url": "https://admin.mlscn.gov.ng/storage/resources/seeded/national-guidelines-for-setting-up-medical-lab-in-nigeria.pdf",
+    "published_date": "2021-08-01",
+    "filename": "mlscn_guidelines.pdf"
+  },
+  {
+    "id": "national_health_act_2014",
+    "title": "National Health Act 2014",
+    "issuing_body": "Federal Government of Nigeria",
+    "url": "https://p4h.world/app/uploads/2024/06/Nigeria_National-Health-Act-2014.x12608.pdf",
+    "published_date": "2014-10-31",
+    "filename": "national_health_act_2014.pdf"
+  },
+  {
+    "id": "who_lab_quality_guidance",
+    "title": "Laboratory Quality Management System: Handbook",
+    "issuing_body": "World Health Organization (WHO)",
+    "url": "https://iris.who.int/server/api/core/bitstreams/0772adf4-743a-48bb-843b-7ef4c2dc6896/content",
+    "published_date": "2011-01-01",
+    "filename": "who_lqms_handbook.pdf"
+  }
+]

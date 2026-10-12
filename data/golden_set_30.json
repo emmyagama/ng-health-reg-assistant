@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "question": "What does HEFAMAA require before a health facility can operate in Lagos State?",
+    "expected_doc_id": "hefamaa_requirements",
+    "expected_section": "How it works - Register Facility",
+    "answerable": true
+  },
+  {
+    "id": 2,
+    "question": "What documents must be uploaded during HEFAMAA facility registration?",
+    "expected_doc_id": "hefamaa_requirements",
+    "expected_section": "How it works - Uploading Letter of Intent",
+    "answerable": true
+  },
+  {
+    "id": 3,
+    "question": "What categories of health facilities does HEFAMAA register?",
+    "expected_doc_id": "hefamaa_requirements",
+    "expected_section": "How it works - Facility Types",
+    "answerable": true
+  },
+  {
+    "id": 4,
+    "question": "What are the minimum room dimensions for a primary-level medical laboratory in Nigeria?",
+    "expected_doc_id": "mlscn_guidelines",
+    "expected_section": "Laboratory Space",
+    "answerable": true
+  },
+  {
+    "id": 5,
+    "question": "How many Quality System Essentials must a medical laboratory implement under MLSCN guidelines?",
+    "expected_doc_id": "mlscn_guidelines",
+    "expected_section": "4.0 QUALITY SYSTEM REQUIREMENTS FOR MEDICAL LABORATORY SERVICES",
+    "answerable": true
+  },
+  {
+    "id": 6,
+    "question": "What qualifications are required to manage a medical laboratory in Nigeria?",
+    "expected_doc_id": "mlscn_guidelines",
+    "expected_section": "8.0 HUMAN RESOURCES /PERSONNEL",
+    "answerable": true
+  },
+  {
+    "id": 7,
+    "question": "What is the right to emergency treatment under Nigerian health law?",
+    "expected_doc_id": "national_health_act_2014",
+    "expected_section": "PART III - RIGHTS AND OBLIGATIONS OF USERS AND HEALTHCARE PERSONNEL",
+    "answerable": true
+  },
+  {
+    "id": 8,
+    "question": "How are health establishments classified and what standards apply?",
+    "expected_doc_id": "national_health_act_2014",
+    "expected_section": "PART II - HEALTH ESTABLISHMENTS AND TECHNOLOGIES",
+    "answerable": true
+  },
+  {
+    "id": 9,
+    "question": "What is the National Health System and which ministry is responsible?",
+    "expected_doc_id": "national_health_act_2014",
+    "expected_section": "PART I - RESPONSIBILITY FOR HEALTH AND ELIGIBILITY FOR HEALTH SERVICES",
+    "answerable": true
+  },
+  {
+    "id": 10,
+    "question": "What are the lawful bases for processing personal data under Nigerian law?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART V - PRINCIPLES AND LAWFUL BASIS GOVERNING PROCESSING OF PERSONAL DATA",
+    "answerable": true
+  },
+  {
+    "id": 11,
+    "question": "What rights does a data subject have under the Nigeria Data Protection Act?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART VI - RIGHTS OF A DATA SUBJECT",
+    "answerable": true
+  },
+  {
+    "id": 12,
+    "question": "How are cross-border transfers of personal data regulated in Nigeria?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART VIII - CROSS-BORDER TRANSFERS OF PERSONAL DATA",
+    "answerable": true
+  },
+  {
+    "id": 13,
+    "question": "What security obligations do data controllers have in Nigeria?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART VII - DATA SECURITY",
+    "answerable": true
+  },
+  {
+    "id": 14,
+    "question": "What fees must data controllers of major importance pay when registering with NDPC?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "expected_section": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+    "answerable": true
+  },
+  {
+    "id": 15,
+    "question": "What processing volume thresholds trigger designation as a data controller of major importance?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "expected_section": "1. Designation of Data Controllers and Data Processors of Major Importance",
+    "answerable": true
+  },
+  {
+    "id": 16,
+    "question": "What three categories does NDPC use for classifying major data controllers and processors?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "expected_section": "2. Classification of Data Controllers and Data Processors of Major Importance",
+    "answerable": true
+  },
+  {
+    "id": 17,
+    "question": "What is the National Health Insurance Authority and what is its mandate?",
+    "expected_doc_id": "nhia_act_2022",
+    "expected_section": "PART I - ESTABLISHMENT OF THE NATIONAL HEALTH INSURANCE AUTHORITY",
+    "answerable": true
+  },
+  {
+    "id": 18,
+    "question": "What is the Basic Health Care Provision Fund and how is it disbursed?",
+    "expected_doc_id": "nhia_act_2022",
+    "expected_section": "PART III - IMPLEMENTATION OF BASIC HEALTH CARE PROVISION FUND AND ESTABLISHMENT OF VULNERABLE GROUP FUND",
+    "answerable": true
+  },
+  {
+    "id": 19,
+    "question": "Is participation in health insurance mandatory in Nigeria?",
+    "expected_doc_id": "nhia_act_2022",
+    "expected_section": "PART II - TYPES OF HEALTH INSURANCE SCHEMES",
+    "answerable": true
+  },
+  {
+    "id": 20,
+    "question": "What is the Contributory Social Health Insurance Scheme (CSHIS) and who is eligible?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "expected_section": "SECTION 2: SCHEMES AND PROGRAMMES",
+    "answerable": true
+  },
+  {
+    "id": 21,
+    "question": "What is Health Insurance Under One Roof (HIUOR)?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "expected_section": "SECTION 1: GOVERNANCE",
+    "answerable": true
+  },
+  {
+    "id": 22,
+    "question": "How does NHIA govern funding for the authority and accountability mechanisms?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "expected_section": "SECTION 1: GOVERNANCE",
+    "answerable": true
+  },
+  {
+    "id": 23,
+    "question": "According to WHO guidance, what is the quality management system model for laboratories?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "expected_section": "1-3: The quality management system model",
+    "answerable": true
+  },
+  {
+    "id": 24,
+    "question": "What is the role of occurrence management in laboratory quality?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "expected_section": "14. Occurrence management",
+    "answerable": true
+  },
+  {
+    "id": 25,
+    "question": "How should a medical laboratory handle documents and records according to international standards?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "expected_section": "Documents and records",
+    "answerable": true
+  },
+  {
+    "id": 26,
+    "question": "What is the correct antibiotic dosage for treating a severe Staphylococcus aureus infection in a 70kg adult?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 27,
+    "question": "How should I diagnose acute malaria from a patient's symptoms without a rapid diagnostic test?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 28,
+    "question": "What medications should be prescribed to a pregnant woman with hypertension in her third trimester?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 29,
+    "question": "What is the corporate income tax rate for health maintenance organisations in Nigeria?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 30,
+    "question": "What visa and work-permit requirements apply to foreign doctors relocating to Nigeria?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  }
+]

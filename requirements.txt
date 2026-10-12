@@ -7,3 +7,5 @@ python-dotenv
 streamlit
 pandas
 numpy
+pymupdf
+rapidocr-onnxruntime

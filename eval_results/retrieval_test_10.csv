@@ -1,0 +1,13 @@
+question,expected_doc_id,found,rank,returned_doc_ids
+What does HEFAMAA require for facility accreditation?,hefamaa_requirements,YES,1,hefamaa_requirements;hefamaa_requirements;who_lab_quality_guidance;mlscn_guidelines;who_lab_quality_guidance
+What are the minimum space and room requirements for setting up a primary medical laboratory in Nigeria?,mlscn_guidelines,YES,1,mlscn_guidelines;mlscn_guidelines;who_lab_quality_guidance;who_lab_quality_guidance;national_health_act_2014
+What is the Basic Health Care Provision Fund and how is it disbursed?,nhia_act_2022,YES,3,national_health_act_2014;national_health_act_2014;nhia_act_2022;nhia_act_2022;nhia_guidance_2023
+What are the obligations of a data controller under the Nigeria Data Protection Act?,ndpa_2023,YES,1,ndpa_2023;ndpa_2023;ndpc_guidance_2024;ndpc_guidance_2024;nhia_guidance_2023
+What fees must data controllers of major importance pay to the NDPC?,ndpc_guidance_2024,YES,1,ndpc_guidance_2024;ndpa_2023;ndpc_guidance_2024;ndpa_2023;nhia_act_2022
+What rights do patients and users of health services have under Nigerian law?,national_health_act_2014,YES,1,national_health_act_2014;national_health_act_2014;nhia_act_2022;nhia_act_2022;nhia_guidance_2023
+What is the Contributory Social Health Insurance Scheme and who is eligible to participate?,nhia_guidance_2023,YES,1,nhia_guidance_2023;nhia_guidance_2023;nhia_act_2022;nhia_act_2022;national_health_act_2014
+How should a medical laboratory establish a quality management system according to international standards?,who_lab_quality_guidance,YES,1,who_lab_quality_guidance;who_lab_quality_guidance;mlscn_guidelines;mlscn_guidelines;national_health_act_2014
+What categories of health establishments exist and what standards apply to private facilities?,national_health_act_2014,YES,1,national_health_act_2014;national_health_act_2014;nhia_act_2022;hefamaa_requirements;hefamaa_requirements
+How are cross-border transfers of personal data regulated in Nigeria?,ndpa_2023,YES,1,ndpa_2023;ndpa_2023;ndpc_guidance_2024;ndpc_guidance_2024;nhia_act_2022
+
+SUMMARY,Retrieval accuracy: 10/10 (100%)
