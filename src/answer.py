@@ -24,6 +24,7 @@ Return dict keys:
 
 from __future__ import annotations
 
+import json
 import os
 import re
 import sys
@@ -45,32 +46,91 @@ load_dotenv(ROOT / ".env")
 # ---------------------------------------------------------------------------
 # Citation regex
 # ---------------------------------------------------------------------------
-# Matches citations of the form   [Some Document Title, Section Label]
+# Matches bracketed citations of the form   [Some Document Title, Section Label]
 # The content inside brackets may contain letters, digits, spaces, hyphens,
-# periods, apostrophes, parentheses and colons. CJK brackets 【…】 (and the
-# full-width comma ，) are accepted as equivalents — the model occasionally
-# emits them under low temperature.
-# The bracket pair must not span across a period followed by a new sentence
-# starting with a capital, but we keep the pattern permissive and let
-# downstream cleaning handle it.
+# periods, apostrophes, parentheses and colons. CJK brackets 【…】 are
+# accepted as equivalents — the model occasionally emits them under low
+# temperature. At least one comma (ASCII or full-width) must appear; the
+# split into title vs section is NOT done by this regex any more.
+#
+# Why the split moved out of the regex: the old first-comma boundary tore
+# any document title that itself contains a comma. "National Health
+# Insurance Authority Act, 2022" became title="National Health Insurance
+# Authority Act" / section="2022, PART VII—…", which could never match a
+# retrieved chunk — understating citation_correctness (the frozen run
+# published 0.648 when the true figure is higher; see
+# eval_results/b1_v1_metrics.json after the parser fix).
 _CITATION_RE = re.compile(
-    r"[\[【]"               # opening bracket (ASCII or CJK)
-    r"([^\[\]【】\n]{3,200}?)" # citation body (no nested brackets / newlines)
-    r"[,，]"                # comma separating title from section
-    r"([^\[\]【】\n]{3,200}?)" # section label
-    r"[\]】]",                # closing bracket (ASCII or CJK)
+    r"[\[【]"                    # opening bracket (ASCII or CJK)
+    r"([^\[\]【】\n]{3,400}?)"   # citation body (no nested brackets / newlines)
+    r"[\]】]",                   # closing bracket (ASCII or CJK)
 )
 
+# Document titles from the committed data/sources.json, longest first so
+# the most specific title wins a prefix tie. Loaded from the artefact,
+# never from memory and never from the retriever.
+_KNOWN_TITLES_CACHE: Optional[list[str]] = None
 
-def _extract_citations(answer_text: str) -> list[dict]:
+
+def _load_known_titles() -> list[str]:
+    """Known document titles, longest first, from data/sources.json."""
+    global _KNOWN_TITLES_CACHE
+    if _KNOWN_TITLES_CACHE is None:
+        sources = ROOT / "data" / "sources.json"
+        titles: list[str] = []
+        if sources.exists():
+            try:
+                data = json.loads(sources.read_text(encoding="utf-8"))
+                titles = [e["title"] for e in data if e.get("title")]
+            except (OSError, ValueError):
+                titles = []
+        _KNOWN_TITLES_CACHE = sorted(set(titles), key=len, reverse=True)
+    return _KNOWN_TITLES_CACHE
+
+
+def _split_citation_body(body: str,
+                         known_titles: Optional[list[str]] = None) -> tuple[str, str]:
+    """Split a bracket's content into (title, section).
+
+    Layer 1 of the citation fix: resolve the title against the known
+    document titles FIRST (longest title first, case-insensitive prefix,
+    returning the canonical title), and only fall back to the legacy
+    first-comma split when no known title matches. This is what keeps
+    "National Health Insurance Authority Act, 2022, PART VII—FINANCIAL
+    PROVISIONS" intact.
+    """
+    if known_titles is None:
+        known_titles = _load_known_titles()
+    body = (body or "").strip()
+    lowered = body.lower()
+    for title in known_titles:
+        for sep in (",", "，"):
+            prefix = (title + sep).lower()
+            if lowered.startswith(prefix):
+                return title, body[len(title) + 1:].strip()
+    # Fallback: first comma (ASCII or full-width) is the boundary.
+    for sep in (",", "，"):
+        idx = body.find(sep)
+        if idx != -1:
+            return body[:idx].strip(), body[idx + 1:].strip()
+    return body, ""
+
+
+def _extract_citations(answer_text: str,
+                       known_titles: Optional[list[str]] = None) -> list[dict]:
     """Return a list of {"doc_title", "section_label"} dicts for every
-    [Title, Section] citation found in answer_text."""
+    [Title, Section] citation found in answer_text.
+
+    Each bracket body is split by _split_citation_body, so titles that
+    contain commas survive intact when they match a known document title.
+    """
     out = []
-    for m in _CITATION_RE.finditer(answer_text):
-        out.append({
-            "doc_title": m.group(1).strip(),
-            "section_label": m.group(2).strip(),
-        })
+    for m in _CITATION_RE.finditer(answer_text or ""):
+        body = m.group(1).strip()
+        if "," not in body and "，" not in body:
+            continue  # not a Title, Section citation
+        title, section = _split_citation_body(body, known_titles)
+        out.append({"doc_title": title, "section_label": section})
     return out
 
 

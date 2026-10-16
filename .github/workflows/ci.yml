@@ -35,6 +35,9 @@ jobs:
       - name: Answer self-tests (no API key required)
         run: python src/answer.py
 
+      - name: Classifier unit tests
+        run: python -m pytest tests/ -q
+
       # Drift guard: the generated tables in README.md and
       # notes/failure_modes.md must match a fresh render from the
       # committed eval CSVs.

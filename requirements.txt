@@ -16,6 +16,9 @@
 #                              output to a run without it, so it is only here to
 #                              keep pypdf from spraying "fontTools is required"
 #                              warnings through a stranger's build log.
+#   pytest                  -> tests/test_classifier.py (wired into CI; the
+#                              classifier's three buckets and its neutrality
+#                              on the frozen run are asserted there)
 # numpy, pandas and torchvision are deliberately absent:
 #   numpy/pandas are not imported anywhere here (streamlit/chromadb pull
 #   them in transitively - see requirements.lock.txt);
@@ -31,3 +34,4 @@ streamlit==1.65.0
 rapidocr-onnxruntime==1.4.4
 svgwrite==1.4.3
 fonttools==4.61.0
+pytest==8.3.4

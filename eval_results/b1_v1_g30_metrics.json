@@ -2,11 +2,11 @@
   "k": 5,
   "questions": 30,
   "rows_excluded_from_answer_metrics": 0,
-  "gold_questions": 22,
+  "gold_questions": 23,
   "retrieval": {
-    "recall_at_k": 0.35075757575757577,
-    "context_precision_at_k": 0.17272727272727273,
-    "mrr": 0.4659090909090909,
+    "recall_at_k": 0.3789855072463768,
+    "context_precision_at_k": 0.1739130434782609,
+    "mrr": 0.4543478260869565,
     "document_level_hit_rate": 1.0,
     "document_level_hits": 25,
     "document_level_answerable": 25
@@ -17,10 +17,20 @@
     "refusal_correctness": 1.0,
     "unanswerable_questions": 5,
     "hallucination_rate": 0.0,
-    "citation_correctness": 0.6326530612244898,
+    "citation_correctness": 0.8979591836734694,
     "citations_total": 49,
-    "citations_correct": 31,
-    "citations_missing": 18
+    "citations_correct": 44,
+    "citations_missing": 5,
+    "groundedness": {
+      "mean": null,
+      "n_scored": 0,
+      "n_shown_answers": 17,
+      "n_answerable": 25,
+      "unscored": 17,
+      "rubric": "eval_results/v1_scoring_sheet.md",
+      "sheet_applied": false,
+      "note": "NOT SCORED for this run — the human sheet is written against the 'b1_v1' run's answer texts and is not attributed to other runs"
+    }
   },
   "shown_to_user": {
     "answer": 17,

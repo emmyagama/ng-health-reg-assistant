@@ -2,11 +2,11 @@
   "k": 5,
   "questions": 50,
   "rows_excluded_from_answer_metrics": 0,
-  "gold_questions": 22,
+  "gold_questions": 23,
   "retrieval": {
-    "recall_at_k": 0.35075757575757577,
-    "context_precision_at_k": 0.17272727272727273,
-    "mrr": 0.4659090909090909,
+    "recall_at_k": 0.3789855072463768,
+    "context_precision_at_k": 0.1739130434782609,
+    "mrr": 0.4543478260869565,
     "document_level_hit_rate": 1.0,
     "document_level_hits": 25,
     "document_level_answerable": 25
@@ -17,10 +17,19 @@
     "refusal_correctness": 1.0,
     "unanswerable_questions": 25,
     "hallucination_rate": 0.0,
-    "citation_correctness": 0.6481481481481481,
+    "citation_correctness": 0.9074074074074074,
     "citations_total": 54,
-    "citations_correct": 35,
-    "citations_missing": 19
+    "citations_correct": 49,
+    "citations_missing": 5,
+    "groundedness": {
+      "mean": 0.7944444444444444,
+      "n_scored": 18,
+      "n_shown_answers": 18,
+      "n_answerable": 25,
+      "unscored": 0,
+      "rubric": "eval_results/v1_scoring_sheet.md",
+      "sheet_applied": true
+    }
   },
   "shown_to_user": {
     "answer": 18,
