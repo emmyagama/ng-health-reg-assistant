@@ -43,6 +43,7 @@ import argparse
 import csv
 import json
 import random
+import re
 import statistics
 import sys
 import time
@@ -58,6 +59,8 @@ from answer import generate_answer, GroqAPIError
 # Paths and schema
 # ---------------------------------------------------------------------------
 DEFAULT_GOLDEN = ROOT / "data" / "golden_set_30.json"
+DEFAULT_GOLD_CHUNKS = ROOT / "data" / "gold_chunks.json"
+ALL_CHUNKS_PATH = ROOT / "data" / "processed" / "all_chunks.json"
 EVAL_DIR = ROOT / "eval_results"
 
 FIELDNAMES = [
@@ -188,6 +191,207 @@ def _write_csv(csv_path: Path, rows: list[dict]) -> None:
         writer.writeheader()
         for r in rows:
             writer.writerow({k: r.get(k, "") for k in FIELDNAMES})
+
+
+# ---------------------------------------------------------------------------
+# Metrics (§3.3)
+# ---------------------------------------------------------------------------
+_DASHES = "\u2010\u2011\u2012\u2013\u2014\u2015\u2212-\u00ad"
+
+
+def _norm(text: str) -> str:
+    """Normalise a citation or a chunk label for comparison.
+
+    Dashes are unified (the corpus uses em dashes, the model often emits en
+    dashes), whitespace is collapsed and case is folded. Nothing else is
+    changed, so a citation that only matches after this is still auditable.
+    """
+    out = (text or "").lower()
+    for dash in _DASHES:
+        out = out.replace(dash, "-")
+    return re.sub(r"\s+", " ", out).strip()
+
+
+def _load_metrics_context(gold_chunks_path: Path) -> tuple[dict, dict]:
+    """Load the gold set and a chunk_id -> (title, section) index.
+
+    Both come from committed artefacts (data/gold_chunks.json and
+    data/processed/all_chunks.json), never from the retriever.
+    """
+    gold_by_id: dict[str, dict] = {}
+    if gold_chunks_path.exists():
+        for record in json.loads(gold_chunks_path.read_text(encoding="utf-8")):
+            gold_by_id[str(record["id"])] = record
+    else:
+        print(f"WARNING: {gold_chunks_path} not found — recall@k, "
+              f"context precision and MRR will not be computed.")
+    chunk_index: dict[str, tuple[str, str]] = {}
+    if ALL_CHUNKS_PATH.exists():
+        for chunk in json.loads(ALL_CHUNKS_PATH.read_text(encoding="utf-8")):
+            chunk_index[chunk["chunk_id"]] = (
+                chunk.get("doc_title", ""), chunk.get("section_label", ""))
+    return gold_by_id, chunk_index
+
+
+def _retrieval_metrics(retrieved_ids: list[str], gold_ids: list[str],
+                       k: int) -> dict:
+    """recall@k, context precision@k and MRR for one question."""
+    if not gold_ids:
+        return {"gold_total": 0, "gold_in_topk": 0, "recall": None,
+                "precision": None, "first_gold_rank": None, "mrr": None}
+    topk = retrieved_ids[:k]
+    hits = [cid for cid in topk if cid in gold_ids]
+    first_rank = None
+    for rank, cid in enumerate(topk, start=1):
+        if cid in gold_ids:
+            first_rank = rank
+            break
+    return {
+        "gold_total": len(gold_ids),
+        "gold_in_topk": len(hits),
+        "recall": len(hits) / len(gold_ids),
+        "precision": len(hits) / k if k else None,
+        "first_gold_rank": first_rank,
+        "mrr": (1.0 / first_rank) if first_rank else 0.0,
+    }
+
+
+def _citation_metrics(answer_text: str, retrieved_ids: list[str],
+                      chunk_index: dict, k: int) -> dict:
+    """Citation correctness for one answer.
+
+    A citation is correct when its [Title, Section] matches a retrieved
+    chunk (case- and dash-insensitive, whitespace collapsed). A citation
+    whose section matches but whose title does not, or that matches nothing
+    in the retrieved set, counts as citation_target_missing.
+    """
+    from answer import _extract_citations
+
+    retrieved = [chunk_index[c] for c in retrieved_ids[:k]
+                 if c in chunk_index]
+    norm_pairs = {(_norm(t), _norm(s)) for t, s in retrieved}
+    norm_titles = {t for t, _ in norm_pairs}
+    norm_sections = {s for _, s in norm_pairs}
+
+    total = correct = missing = 0
+    for cite in _extract_citations(answer_text or ""):
+        total += 1
+        title = _norm(cite["doc_title"])
+        section = _norm(cite["section_label"])
+        if (title, section) in norm_pairs:
+            correct += 1
+        elif title in norm_titles and any(
+                section in s or s in section for s in norm_sections):
+            correct += 1
+        else:
+            missing += 1
+    return {"citations_total": total, "citations_correct": correct,
+            "citations_missing": missing}
+
+
+def _mean(values: list[float]) -> float | None:
+    return statistics.mean(values) if values else None
+
+
+def compute_metrics(rows: list[dict], golden: list[dict],
+                    chunk_index: dict, k: int) -> dict:
+    """All §3.3 metrics, computed once over the finished rows.
+
+    Retrieval metrics use every row that has retrieved chunks (retrieval
+    happens before generation, so a generation error does not poison them).
+    Answer metrics use only rows with status=ok; the exclusions are counted.
+    """
+    golden_by_id = {str(e["id"]): e for e in golden}
+    answerable_by_id = {
+        str(e["id"]): bool(e.get("answerable", True)) for e in golden}
+
+    retrieval_rows = []
+    for row in rows:
+        if not row.get("retrieved_chunk_ids"):
+            continue
+        record = row.get("_gold_record") or {}
+        gold_ids = [g["chunk_id"] for g in record.get("gold_chunks", [])]
+        m = _retrieval_metrics(
+            str(row["retrieved_chunk_ids"]).split(";"), gold_ids, k)
+        if m["gold_total"]:
+            retrieval_rows.append(m)
+
+    ok_rows = [r for r in rows if r.get("status") == "ok"]
+    excluded = len(rows) - len(ok_rows)
+
+    citation_totals = {"citations_total": 0, "citations_correct": 0,
+                       "citations_missing": 0}
+    for row in ok_rows:
+        if row.get("shown_to_user") != "answer":
+            continue
+        ids = str(row.get("retrieved_chunk_ids", "")).split(";")
+        cm = _citation_metrics(row.get("answer_text", ""), ids,
+                               chunk_index, k)
+        for key in citation_totals:
+            citation_totals[key] += cm[key]
+
+    answerable_rows = [r for r in ok_rows
+                       if answerable_by_id.get(str(r["id"]), True)]
+    unanswerable_rows = [r for r in ok_rows
+                         if not answerable_by_id.get(str(r["id"]), True)]
+
+    def _count(rows_: list[dict], shown: str) -> int:
+        return sum(1 for r in rows_ if r.get("shown_to_user") == shown)
+
+    by_shown: dict[str, int] = {}
+    for r in ok_rows:
+        by_shown[r["shown_to_user"]] = by_shown.get(r["shown_to_user"], 0) + 1
+
+    # Old document-level metric, kept beside the new ones so the reader can
+    # see why a 100% hit rate says nothing.
+    doc_hits = [r for r in rows
+                if answerable_by_id.get(str(r["id"]), True)
+                and r.get("retrieval_hit") == "TRUE"]
+    doc_answerable = [e for e in golden
+                      if answerable_by_id.get(str(e["id"]), True)]
+
+    metrics = {
+        "k": k,
+        "questions": len(rows),
+        "rows_excluded_from_answer_metrics": excluded,
+        "gold_questions": len(retrieval_rows),
+        "retrieval": {
+            "recall_at_k": _mean([m["recall"] for m in retrieval_rows]),
+            "context_precision_at_k": _mean(
+                [m["precision"] for m in retrieval_rows]),
+            "mrr": _mean([m["mrr"] for m in retrieval_rows]),
+            "document_level_hit_rate": (
+                len(doc_hits) / len(doc_answerable) if doc_answerable
+                else None),
+            "document_level_hits": len(doc_hits),
+            "document_level_answerable": len(doc_answerable),
+        },
+        "answers": {
+            "grounded_answer_rate": (
+                _count(answerable_rows, "answer") / len(answerable_rows)
+                if answerable_rows else None),
+            "answerable_questions": len(answerable_rows),
+            "refusal_correctness": (
+                (len(unanswerable_rows)
+                 - _count(unanswerable_rows, "answer"))
+                / len(unanswerable_rows) if unanswerable_rows else None),
+            "unanswerable_questions": len(unanswerable_rows),
+            "hallucination_rate": (
+                _count(unanswerable_rows, "answer") / len(unanswerable_rows)
+                if unanswerable_rows else None),
+            "citation_correctness": (
+                citation_totals["citations_correct"]
+                / citation_totals["citations_total"]
+                if citation_totals["citations_total"] else None),
+            **citation_totals,
+        },
+        "shown_to_user": by_shown,
+    }
+    return metrics
+
+
+def _fmt(value: float | None, digits: int = 3) -> str:
+    return "n/a" if value is None else f"{value:.{digits}f}"
 
 
 # ---------------------------------------------------------------------------
@@ -348,6 +552,19 @@ def evaluate(
     for r in ok_rows:
         shown_counts[r["shown_to_user"]] = shown_counts.get(r["shown_to_user"], 0) + 1
 
+    # --- §3.3 metrics (need the gold set and a chunk_id -> label index) ---
+    gold_by_id, chunk_index = _load_metrics_context(DEFAULT_GOLD_CHUNKS)
+    for r in rows:
+        r["_gold_record"] = gold_by_id.get(str(r["id"]))
+    metrics = compute_metrics(rows, golden, chunk_index, k)
+    metrics_path = EVAL_DIR / f"{prefix}_metrics.json"
+    metrics_path.write_text(
+        json.dumps(metrics, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8")
+
+    retrieval_m = metrics["retrieval"]
+    answers_m = metrics["answers"]
+
     md = []
     md.append(f"# Evaluation Summary — '{prefix}' run\n")
     md.append(f"- Golden set: `{golden_path.name}` ({total} questions; "
@@ -371,6 +588,54 @@ def evaluate(
     md.append(f"- What reached the user: " +
               ", ".join(f"{v}× {k2}" for k2, v in sorted(shown_counts.items()))
               if shown_counts else "- What reached the user: (no ok rows)")
+    md.append("")
+    md.append("## Retrieval quality\n")
+    md.append("Computed over the questions with gold chunks in "
+              f"`data/gold_chunks.json` ({metrics['gold_questions']} of "
+              f"{metrics['questions']}; the rest are out of corpus or "
+              "unanswerable by design).")
+    md.append("")
+    md.append("| metric | value | definition |")
+    md.append("|--------|-------|------------|")
+    md.append(f"| recall@{k} | **{_fmt(retrieval_m['recall_at_k'])}** | "
+              f"mean over questions of (gold chunks in top-{k}) / (gold "
+              f"chunks for that question) |")
+    md.append(f"| context_precision@{k} | **{_fmt(retrieval_m['context_precision_at_k'])}** | "
+              f"mean over questions of (retrieved chunks that are gold) / {k} |")
+    md.append(f"| MRR | **{_fmt(retrieval_m['mrr'])}** | mean over questions "
+              f"of 1 / (rank of first gold chunk) |")
+    md.append(f"| document-level hit rate (old metric) | "
+              f"**{retrieval_m['document_level_hits']}/"
+              f"{retrieval_m['document_level_answerable']}** | "
+              f"answerable questions whose expected document appears "
+              f"anywhere in the top-{k} — saturated, kept for comparison |")
+    md.append("")
+    md.append("## Answer quality\n")
+    md.append("| metric | value | over |")
+    md.append("|--------|-------|------|")
+    md.append(f"| grounded_answer_rate | "
+              f"**{_fmt(answers_m['grounded_answer_rate'])}** | "
+              f"{answers_m['answerable_questions']} answerable questions |")
+    md.append(f"| refusal_correctness | "
+              f"**{_fmt(answers_m['refusal_correctness'])}** | "
+              f"{answers_m['unanswerable_questions']} unanswerable questions |")
+    md.append(f"| hallucination_rate | "
+              f"**{_fmt(answers_m['hallucination_rate'])}** | "
+              f"{answers_m['unanswerable_questions']} unanswerable questions |")
+    md.append(f"| citation_correctness | "
+              f"**{_fmt(answers_m['citation_correctness'])}** | "
+              f"{answers_m['citations_total']} inline citations in answers "
+              f"shown to the user |")
+    md.append(f"| citation_target_missing | "
+              f"**{answers_m['citations_missing']}** | citations pointing at "
+              f"something not in the retrieved context |")
+    md.append("")
+    md.append("What reached the user, by verdict: " +
+              (", ".join(f"{v}× {k2}" for k2, v in sorted(shown_counts.items()))
+               if shown_counts else "(no ok rows)"))
+    md.append("")
+    md.append(f"Machine-readable copy of every number above: "
+              f"`eval_results/{metrics_path.name}`.")
     md.append("")
     if error_ids:
         md.append(f"**This run is not clean.** Question ids with generation "
@@ -400,11 +665,22 @@ def evaluate(
     print(f"Results written to:")
     print(f"  CSV:     {csv_path}")
     print(f"  Summary: {md_path}")
+    print(f"  Metrics: {metrics_path}")
     print(f"Questions:     {len(rows)} ({len(rows) - resumed_count} run, "
           f"{resumed_count} resumed)")
     print(f"Retries:       {retry_total}")
     print(f"Excluded rows: {excluded} (never averaged)")
-    print(f"Retrieval hit: {retrieval_hits}/{answerable_total} = {retrieval_acc:.1f}%")
+    print(f"Retrieval hit: {retrieval_hits}/{answerable_total} = {retrieval_acc:.1f}% "
+          f"(old document-level metric)")
+    print(f"recall@{k}:     {_fmt(retrieval_m['recall_at_k'])}"
+          f"   context_precision@{k}: {_fmt(retrieval_m['context_precision_at_k'])}"
+          f"   MRR: {_fmt(retrieval_m['mrr'])}"
+          f"   (over {metrics['gold_questions']} questions with gold chunks)")
+    print(f"grounded_answer_rate: {_fmt(answers_m['grounded_answer_rate'])}"
+          f"   refusal_correctness: {_fmt(answers_m['refusal_correctness'])}"
+          f"   hallucination_rate: {_fmt(answers_m['hallucination_rate'])}")
+    print(f"citation_correctness: {_fmt(answers_m['citation_correctness'])}"
+          f"   citation_target_missing: {answers_m['citations_missing']}")
     print(f"Latency:       mean {avg_latency:.2f}s  median {med_latency:.2f}s "
           f"(over {len(ok_rows)} ok rows)")
     print(f"Tokens (mean): {avg_toks:.0f}")
