@@ -1,0 +1,213 @@
+{
+  "generated": "2026-10-16T08:45:34+00:00",
+  "documents": [
+    {
+      "id": "ndpa_2023",
+      "filename": "ndpa_2023.pdf",
+      "sha256": "5bfb22cf7b344e92ecca9b80decf73db694a0d1000c4f42188f46e047d8df075",
+      "bytes": 658393,
+      "pages": 43,
+      "provenance": "local",
+      "source_url": "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+      "content_verified": true,
+      "markers_matched": [
+        "Nigeria Data Protection Act",
+        "Part V",
+        "lawful basis",
+        "Data Subject"
+      ],
+      "text_source": "pdf text layer",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "final_url": "https://ndpc.gov.ng/wp-content/uploads/2024/03/Nigeria_Data_Protection_Act_2023.pdf",
+        "bytes": 658393,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 200,
+        "magic_default_ua": "%PDF-"
+      }
+    },
+    {
+      "id": "ndpc_guidance_2024",
+      "filename": "ndpc_guidance_2024.pdf",
+      "sha256": "18fe904ac37feb7abeb6c259d1a81508ae10c01b33036b8fb88e32bf5c52fae3",
+      "bytes": 684762,
+      "pages": 6,
+      "provenance": "local",
+      "source_url": "https://ndpc.gov.ng/wp-content/uploads/2025/07/Updated-Guidance-Notice-on-Registtration-2024.pdf",
+      "content_verified": true,
+      "markers_matched": [
+        "Data Controllers and Data Processors of Major Importance",
+        "250,000",
+        "Ultra-High"
+      ],
+      "text_source": "pdf text layer",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "final_url": "https://ndpc.gov.ng/wp-content/uploads/2025/07/Updated-Guidance-Notice-on-Registtration-2024.pdf",
+        "bytes": 684762,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 200,
+        "magic_default_ua": "%PDF-"
+      }
+    },
+    {
+      "id": "nhia_act_2022",
+      "filename": "nhia_act_2022.pdf",
+      "sha256": "e3de2b3d7075b8d0917f992bc4587898500861fd56e47d13f3b15c1b4463775a",
+      "bytes": 593829,
+      "pages": 31,
+      "provenance": "local",
+      "source_url": "https://p4h.world/app/uploads/2024/06/Nigeria-National-Health-Insurance-Act.x23411.pdf",
+      "content_verified": true,
+      "markers_matched": [
+        "National Health Insurance Authority",
+        "Vulnerable Group Fund",
+        "Basic Health Care Provision Fund"
+      ],
+      "text_source": "pdf text layer",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "final_url": "https://p4h.world/app/uploads/2024/06/Nigeria-National-Health-Insurance-Act.x23411.pdf",
+        "bytes": 593829,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 200,
+        "magic_default_ua": "%PDF-"
+      }
+    },
+    {
+      "id": "nhia_guidance_2023",
+      "filename": "nhia_operational_guidelines_2023.pdf",
+      "sha256": "b77a62cc4b7f9019feb662a318e9e60402ce30388ecf1e45dea08ce4c3d307c5",
+      "bytes": 5067286,
+      "pages": 22,
+      "provenance": "local",
+      "source_url": "https://www.nhia.gov.ng/download/nhia-operational-guidelines-2023/?wpdmdl=1901",
+      "content_verified": true,
+      "markers_matched": [
+        "CSHIS",
+        "HIUOR",
+        "SECTION 2"
+      ],
+      "text_source": "pdf text layer + OCR sidecar",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "final_url": "https://www.nhia.gov.ng/download/nhia-operational-guidelines-2023/?wpdmdl=1901",
+        "bytes": 5067286,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 200,
+        "magic_default_ua": "%PDF-"
+      }
+    },
+    {
+      "id": "hefamaa_requirements",
+      "filename": "hefamaa_quickguide.pdf",
+      "sha256": "9de452ffd56b319331330d67589fdd81776b2df52e88521d3ce4ae58f7b8f4ae",
+      "bytes": 1069007,
+      "pages": 19,
+      "provenance": "local",
+      "source_url": "https://www.hefamaaportal.com.ng/wp-content/uploads/2022/03/QUICKGUIDE-New-Facilities.pdf",
+      "content_verified": true,
+      "markers_matched": [
+        "HEFAMAA",
+        "Letter of Intent",
+        "e-HEFAMAA"
+      ],
+      "text_source": "pdf text layer",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "final_url": "https://www.hefamaaportal.com.ng/wp-content/uploads/2022/03/QUICKGUIDE-New-Facilities.pdf",
+        "bytes": 1069007,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 200,
+        "magic_default_ua": "%PDF-"
+      }
+    },
+    {
+      "id": "mlscn_guidelines",
+      "filename": "mlscn_guidelines.pdf",
+      "sha256": "ea694a549dafa451ceeea61320201b585d344e823922e2c252e228f97d362e0a",
+      "bytes": 4295398,
+      "pages": 11,
+      "provenance": "local",
+      "source_url": "https://admin.mlscn.gov.ng/storage/resources/seeded/national-guidelines-for-setting-up-medical-lab-in-nigeria.pdf",
+      "content_verified": true,
+      "markers_matched": [
+        "Medical Laboratory",
+        "MLSCN"
+      ],
+      "text_source": "pdf text layer",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "final_url": "https://admin.mlscn.gov.ng/storage/resources/seeded/national-guidelines-for-setting-up-medical-lab-in-nigeria.pdf",
+        "bytes": 4295398,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 200,
+        "magic_default_ua": "%PDF-"
+      }
+    },
+    {
+      "id": "national_health_act_2014",
+      "filename": "national_health_act_2014.pdf",
+      "sha256": "603de6f5fedcb16334b4be8dd3cfd20f3b73a088712dffe75ed13213a4b6580d",
+      "bytes": 465282,
+      "pages": 44,
+      "provenance": "local",
+      "source_url": "https://p4h.world/app/uploads/2024/06/Nigeria_National-Health-Act-2014.x12608.pdf",
+      "content_verified": true,
+      "markers_matched": [
+        "National Health Act",
+        "ARRANGEMENT OF SECTIONS",
+        "Part III"
+      ],
+      "text_source": "pdf text layer",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf",
+        "final_url": "https://p4h.world/app/uploads/2024/06/Nigeria_National-Health-Act-2014.x12608.pdf",
+        "bytes": 465282,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 200,
+        "magic_default_ua": "%PDF-"
+      }
+    },
+    {
+      "id": "who_lab_quality_guidance",
+      "filename": "who_lqms_handbook.pdf",
+      "sha256": "e07ce5a8a338f56d1faa378b48adfabaeec4f952a048324583cc3c67d3a24782",
+      "bytes": 6191879,
+      "pages": 248,
+      "provenance": "local",
+      "source_url": "https://iris.who.int/server/api/core/bitstreams/0772adf4-743a-48bb-843b-7ef4c2dc6896/content",
+      "content_verified": true,
+      "markers_matched": [
+        "Laboratory Quality Management System",
+        "Occurrence management",
+        "quality control"
+      ],
+      "text_source": "pdf text layer",
+      "transport": {
+        "status": 200,
+        "content_type": "application/pdf;charset=UTF-8",
+        "final_url": "https://iris.who.int/server/api/core/bitstreams/0772adf4-743a-48bb-843b-7ef4c2dc6896/content",
+        "bytes": 6191879,
+        "magic": "%PDF-",
+        "observed": "2026-10-16",
+        "status_default_ua": 403,
+        "magic_default_ua": "<!DOC"
+      }
+    }
+  ]
+}
