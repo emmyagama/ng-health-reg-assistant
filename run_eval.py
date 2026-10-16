@@ -3,7 +3,8 @@
 run_eval.py
 ===========
 End-to-end evaluation of the retrieval + generation pipeline against a
-golden set (default: data/golden_set_30.json).
+golden set (default: data/golden_set_50.json; pass --golden for the
+original 30-question set).
 
 For each question:
   1. query_store(question, n_results=5)
@@ -58,7 +59,7 @@ from answer import generate_answer, GroqAPIError
 # ---------------------------------------------------------------------------
 # Paths and schema
 # ---------------------------------------------------------------------------
-DEFAULT_GOLDEN = ROOT / "data" / "golden_set_30.json"
+DEFAULT_GOLDEN = ROOT / "data" / "golden_set_50.json"
 DEFAULT_GOLD_CHUNKS = ROOT / "data" / "gold_chunks.json"
 ALL_CHUNKS_PATH = ROOT / "data" / "processed" / "all_chunks.json"
 EVAL_DIR = ROOT / "eval_results"

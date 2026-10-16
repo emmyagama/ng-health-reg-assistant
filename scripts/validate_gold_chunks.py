@@ -8,6 +8,9 @@ The one rule that matters: every `evidence` string must be a verbatim
 substring of the chunk it claims to come from. If this script fails, the
 gold set is wrong and no metric computed from it may be published.
 
+Only Q1-Q30 have gold chunks. Q31-Q50 are unanswerable by design and are
+correctly absent from gold_chunks.json.
+
 Usage:
     python scripts/validate_gold_chunks.py
 """
@@ -20,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 GOLD_CHUNKS = ROOT / "data" / "gold_chunks.json"
-GOLDEN = ROOT / "data" / "golden_set_30.json"
+GOLDEN = ROOT / "data" / "golden_set_50.json"
 ALL_CHUNKS = ROOT / "data" / "processed" / "all_chunks.json"
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -41,8 +44,20 @@ def main() -> None:
     failures: list[str] = []
     checked_evidence = 0
 
-    if [int(r["id"]) for r in gold] != sorted(golden_by_id):
-        failures.append("gold_chunks ids do not match golden_set ids 1..N")
+    # gold_chunks.json has a record for every graded question (ids 1..30):
+    # answerable ones carry gold_chunks, unanswerable ones carry a refusal
+    # record with gold_in_corpus=false. The 20 new unanswerable questions
+    # (Q31-Q50) were never graded and are legitimately absent, so parity is
+    # against the graded subset, not the full golden set.
+    graded_ids = [int(r["id"]) for r in gold]
+    if graded_ids != sorted(golden_by_id)[:len(graded_ids)]:
+        failures.append(
+            f"gold_chunks ids {graded_ids[:5]}... are not a prefix of the "
+            f"golden set ids")
+    if len(graded_ids) != 30:
+        failures.append(
+            f"expected gold records for the graded 30 questions, got "
+            f"{len(graded_ids)}")
 
     for record in gold:
         qid = int(record["id"])

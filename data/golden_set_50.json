@@ -1,0 +1,392 @@
+[
+  {
+    "id": 1,
+    "question": "What does HEFAMAA require before a health facility can operate in Lagos State?",
+    "expected_doc_id": "hefamaa_requirements",
+    "expected_section": "How it works - Register Facility",
+    "answerable": true
+  },
+  {
+    "id": 2,
+    "question": "What documents must be uploaded during HEFAMAA facility registration?",
+    "expected_doc_id": "hefamaa_requirements",
+    "expected_section": "How it works - Uploading Letter of Intent",
+    "answerable": true
+  },
+  {
+    "id": 3,
+    "question": "What categories of health facilities does HEFAMAA register?",
+    "expected_doc_id": "hefamaa_requirements",
+    "expected_section": "How it works - Facility Types",
+    "answerable": true
+  },
+  {
+    "id": 4,
+    "question": "What are the minimum room dimensions for a primary-level medical laboratory in Nigeria?",
+    "expected_doc_id": "mlscn_guidelines",
+    "expected_section": "Laboratory Space",
+    "answerable": true
+  },
+  {
+    "id": 5,
+    "question": "How many Quality System Essentials must a medical laboratory implement under MLSCN guidelines?",
+    "expected_doc_id": "mlscn_guidelines",
+    "expected_section": "4.0 QUALITY SYSTEM REQUIREMENTS FOR MEDICAL LABORATORY SERVICES",
+    "answerable": true
+  },
+  {
+    "id": 6,
+    "question": "What qualifications are required to manage a medical laboratory in Nigeria?",
+    "expected_doc_id": "mlscn_guidelines",
+    "expected_section": "8.0 HUMAN RESOURCES /PERSONNEL",
+    "answerable": true
+  },
+  {
+    "id": 7,
+    "question": "What is the right to emergency treatment under Nigerian health law?",
+    "expected_doc_id": "national_health_act_2014",
+    "expected_section": "PART III - RIGHTS AND OBLIGATIONS OF USERS AND HEALTHCARE PERSONNEL",
+    "answerable": true
+  },
+  {
+    "id": 8,
+    "question": "How are health establishments classified and what standards apply?",
+    "expected_doc_id": "national_health_act_2014",
+    "expected_section": "PART II - HEALTH ESTABLISHMENTS AND TECHNOLOGIES",
+    "answerable": true
+  },
+  {
+    "id": 9,
+    "question": "What is the National Health System and which ministry is responsible?",
+    "expected_doc_id": "national_health_act_2014",
+    "expected_section": "PART I - RESPONSIBILITY FOR HEALTH AND ELIGIBILITY FOR HEALTH SERVICES",
+    "answerable": true
+  },
+  {
+    "id": 10,
+    "question": "What are the lawful bases for processing personal data under Nigerian law?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART V - PRINCIPLES AND LAWFUL BASIS GOVERNING PROCESSING OF PERSONAL DATA",
+    "answerable": true
+  },
+  {
+    "id": 11,
+    "question": "What rights does a data subject have under the Nigeria Data Protection Act?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART VI - RIGHTS OF A DATA SUBJECT",
+    "answerable": true
+  },
+  {
+    "id": 12,
+    "question": "How are cross-border transfers of personal data regulated in Nigeria?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART VIII - CROSS-BORDER TRANSFERS OF PERSONAL DATA",
+    "answerable": true
+  },
+  {
+    "id": 13,
+    "question": "What security obligations do data controllers have in Nigeria?",
+    "expected_doc_id": "ndpa_2023",
+    "expected_section": "PART VII - DATA SECURITY",
+    "answerable": true
+  },
+  {
+    "id": 14,
+    "question": "What fees must data controllers of major importance pay when registering with NDPC?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "expected_section": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+    "answerable": true
+  },
+  {
+    "id": 15,
+    "question": "What processing volume thresholds trigger designation as a data controller of major importance?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "expected_section": "1. Designation of Data Controllers and Data Processors of Major Importance",
+    "answerable": true
+  },
+  {
+    "id": 16,
+    "question": "What three categories does NDPC use for classifying major data controllers and processors?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "expected_section": "2. Classification of Data Controllers and Data Processors of Major Importance",
+    "answerable": true
+  },
+  {
+    "id": 17,
+    "question": "What is the National Health Insurance Authority and what is its mandate?",
+    "expected_doc_id": "nhia_act_2022",
+    "expected_section": "PART I - ESTABLISHMENT OF THE NATIONAL HEALTH INSURANCE AUTHORITY",
+    "answerable": true
+  },
+  {
+    "id": 18,
+    "question": "What is the Basic Health Care Provision Fund and how is it disbursed?",
+    "expected_doc_id": "nhia_act_2022",
+    "expected_section": "PART III - IMPLEMENTATION OF BASIC HEALTH CARE PROVISION FUND AND ESTABLISHMENT OF VULNERABLE GROUP FUND",
+    "answerable": true
+  },
+  {
+    "id": 19,
+    "question": "Is participation in health insurance mandatory in Nigeria?",
+    "expected_doc_id": "nhia_act_2022",
+    "expected_section": "PART II - TYPES OF HEALTH INSURANCE SCHEMES",
+    "answerable": true
+  },
+  {
+    "id": 20,
+    "question": "What is the Contributory Social Health Insurance Scheme (CSHIS) and who is eligible?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "expected_section": "SECTION 2: SCHEMES AND PROGRAMMES",
+    "answerable": true
+  },
+  {
+    "id": 21,
+    "question": "What is Health Insurance Under One Roof (HIUOR)?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "expected_section": "SECTION 1: GOVERNANCE",
+    "answerable": true
+  },
+  {
+    "id": 22,
+    "question": "How does NHIA govern funding for the authority and accountability mechanisms?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "expected_section": "SECTION 1: GOVERNANCE",
+    "answerable": true
+  },
+  {
+    "id": 23,
+    "question": "According to WHO guidance, what is the quality management system model for laboratories?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "expected_section": "1-3: The quality management system model",
+    "answerable": true
+  },
+  {
+    "id": 24,
+    "question": "What is the role of occurrence management in laboratory quality?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "expected_section": "14. Occurrence management",
+    "answerable": true
+  },
+  {
+    "id": 25,
+    "question": "How should a medical laboratory handle documents and records according to international standards?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "expected_section": "Documents and records",
+    "answerable": true
+  },
+  {
+    "id": 26,
+    "question": "What is the correct antibiotic dosage for treating a severe Staphylococcus aureus infection in a 70kg adult?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 27,
+    "question": "How should I diagnose acute malaria from a patient's symptoms without a rapid diagnostic test?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 28,
+    "question": "What medications should be prescribed to a pregnant woman with hypertension in her third trimester?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 29,
+    "question": "What is the corporate income tax rate for health maintenance organisations in Nigeria?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 30,
+    "question": "What visa and work-permit requirements apply to foreign doctors relocating to Nigeria?",
+    "expected_doc_id": null,
+    "expected_section": null,
+    "answerable": false
+  },
+  {
+    "id": 31,
+    "question": "What is the recommended dose of amoxicillin for a 20kg child with suspected pneumonia?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "clinical",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Dosing advice for a named drug and weight. The corpus is regulatory and contains no dosing schedules; check_clinical_question must block it."
+  },
+  {
+    "id": 32,
+    "question": "How should I diagnose dengue fever from a patient's symptoms and blood results?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "clinical",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Diagnostic advice. No diagnostic algorithm exists anywhere in the corpus."
+  },
+  {
+    "id": 33,
+    "question": "Which antihypertensive medication should I prescribe for a diabetic patient with stage 2 hypertension?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "clinical",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Prescribing advice for a named condition. Out of scope by design."
+  },
+  {
+    "id": 34,
+    "question": "What injection and IV fluid protocol should be used for a severely dehydrated adult patient?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "clinical",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Clinical management protocol. Out of scope by design."
+  },
+  {
+    "id": 35,
+    "question": "What is the correct vaccine schedule for a newborn in the first six weeks of life?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "clinical",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Clinical schedule advice. The corpus mentions immunisation only as a statutory function of government, with no schedule."
+  },
+  {
+    "id": 36,
+    "question": "Should I take warfarin with food, and how should the dose be adjusted before surgery?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "clinical",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Patient-level medication advice. Out of scope by design."
+  },
+  {
+    "id": 37,
+    "question": "What is the personal income tax rate for a Lagos State resident earning 8 million naira per annum?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "out_of_corpus",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Nigerian tax law. Not a health-sector document and not in the corpus."
+  },
+  {
+    "id": 38,
+    "question": "How long does the Nigeria Immigration Service take to process an expatriate quota approval?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "out_of_corpus",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Immigration procedure. Outside the corpus."
+  },
+  {
+    "id": 39,
+    "question": "What is the minimum share capital required to register a microfinance bank with the Central Bank of Nigeria?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "out_of_corpus",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Banking regulation. Outside the corpus."
+  },
+  {
+    "id": 40,
+    "question": "How many days of maternity leave is a private-sector employee in Nigeria entitled to under the Labour Act?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "out_of_corpus",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Employment law. Outside the corpus."
+  },
+  {
+    "id": 41,
+    "question": "What procurement procedure must a state government follow to award a road construction contract above 500 million naira?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "out_of_corpus",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Public procurement law. Outside the corpus."
+  },
+  {
+    "id": 42,
+    "question": "What customs duty and value added tax apply to importing a second-hand MRI scanner into Nigeria?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "out_of_corpus",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Customs and trade. Outside the corpus."
+  },
+  {
+    "id": 43,
+    "question": "What does the National Agency for the Control of AIDS require of NGOs before they may distribute HIV commodities?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "near_miss",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "A different Nigerian regulator (NACA). The corpus covers MLSCN, NHIA, HEFAMAA, NDPC and NDPA, not NACA, so a semi-relevant health-sector neighbour is the trap."
+  },
+  {
+    "id": 44,
+    "question": "What does the Ghana Health Service Act require of a private hospital before it may operate?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "near_miss",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "A different jurisdiction. The corpus is Nigerian only."
+  },
+  {
+    "id": 45,
+    "question": "What did the Nigeria Data Protection Regulation 2019 require of data controllers before the 2023 Act was enacted?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "near_miss",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "A superseded instrument. The corpus has the NDPA 2023 and the 2024 NDPC guidance notice, not the revoked NDPR 2019, so a naive retriever returns the successor rules."
+  },
+  {
+    "id": 46,
+    "question": "What does ISO 27001 require of a hospital's information security management system, and how does certification affect NHIA accreditation?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "near_miss",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "A private standard the corpus lacks. The WHO handbook cites ISO 15189 and ISO 9000, not ISO 27001, and the NHIA Act says nothing about it."
+  },
+  {
+    "id": 47,
+    "question": "What does the NHIA Act say about insurance coverage for cancer chemotherapy drugs?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "mixed",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Regulatory question wearing clinical vocabulary. The Act in the corpus lists scheme types and the Basic Health Care Provision Fund but never names chemotherapy coverage, and 'drugs' also trips the clinical check."
+  },
+  {
+    "id": 48,
+    "question": "How does the Nigeria Data Protection Act require a hospital to obtain consent before using patient images for machine-learning diagnosis?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "mixed",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Regulatory question with a clinical keyword. The Act governs consent for sensitive personal data generally; it says nothing about machine-learning diagnosis, so any specific answer would be invented."
+  },
+  {
+    "id": 49,
+    "question": "What licensing requirements must a manufacturer of antiretroviral drugs meet under the NAFDAC Act?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "mixed",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Regulatory question with clinical vocabulary. The NAFDAC Act is not in the corpus."
+  },
+  {
+    "id": 50,
+    "question": "Does the NHIA Act require accredited HMOs to pay for chemotherapy, and what tariff applies?",
+    "expected_doc_id": null,
+    "answerable": false,
+    "category": "mixed",
+    "expected_behaviour": "refuse",
+    "why_unanswerable": "Regulatory question with clinical vocabulary. Neither chemotherapy coverage nor any tariff appears in the Act, and 'chemotherapy' trips the clinical check."
+  }
+]
