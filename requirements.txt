@@ -10,6 +10,12 @@
 #   streamlit               -> app.py
 #   rapidocr-onnxruntime    -> src/ocr_scans.py
 #   svgwrite                -> generate_diagram.py
+#   fonttools               -> required by pypdf to decode CFF Type1 subset
+#                              fonts (HEFAMAA quick guide). Verified optional:
+#                              with it installed the chunker emits byte-identical
+#                              output to a run without it, so it is only here to
+#                              keep pypdf from spraying "fontTools is required"
+#                              warnings through a stranger's build log.
 # numpy, pandas and torchvision are deliberately absent:
 #   numpy/pandas are not imported anywhere here (streamlit/chromadb pull
 #   them in transitively - see requirements.lock.txt);
@@ -24,3 +30,4 @@ python-dotenv==1.2.4
 streamlit==1.65.0
 rapidocr-onnxruntime==1.4.4
 svgwrite==1.4.3
+fonttools==4.61.0
