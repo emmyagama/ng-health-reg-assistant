@@ -167,3 +167,11 @@ The architecture diagram in `docs/architecture_diagram.svg` shows the end-to-end
 4. **Score the groundedness column.** `eval_results/v1_scoring_sheet.csv` is waiting; until it is filled, the answer-quality story rests on the mechanical metrics only.
 
 Repository layout: `download_corpus.py` → `src/chunker.py` → `src/embed_store.py` → `src/answer.py` → `src/guardrails.py` → `app.py`. Evaluation harness: `run_eval.py`; published tables: `analysis/render_results.py`. Evaluation outputs live in `eval_results/`.
+
+## Licence and contact
+
+MIT — see [LICENSE](LICENSE). Copyright © 2026 Okoliko Emmanuel Agama.
+
+How to cite: Okoliko Emmanuel Agama, *B1 — Nigerian Health-Regulation Q&A*, MIT-licensed source at <https://github.com/emmyagama/ng-health-reg-assistant>, v1.0.0 (2026).
+
+Contact: emmyagama006@gmail.com
