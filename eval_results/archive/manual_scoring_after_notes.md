@@ -1,6 +1,9 @@
 # Manual Scoring — `after_guardrails` run
 
 Source: `eval_results/after_guardrails_guardrails.csv`.
+
+> **PROVENANCE NOTE (added 2026-10-16, when these notes were archived):** the cited source file `after_guardrails_guardrails.csv` has never existed in this repository. The numbers in this file cannot be re-derived and are retained as historical human judgement only.
+
 Scoring rubric identical to `manual_scoring_before.md` — answerable questions
 scored 0–1 per claim; unanswerable questions scored yes/no hallucination based
 on what is **shown to the user** (i.e. after guardrails refusal replacement),

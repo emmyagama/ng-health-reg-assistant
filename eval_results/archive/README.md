@@ -21,3 +21,23 @@ averages computed over error rows, exactly what `run_eval.py` now refuses to
 do. Kept only as evidence of the failure mode. Replaced by the generated
 `*_summary.md` files, which state how many rows were excluded from every
 average.
+
+## `manual_scoring_*.csv` and `manual_scoring_*_notes.md`
+
+The four hand-scoring files from the pre-remediation pipeline (2026-09). They
+are historical human judgement scored against a different retrieval and
+generation state, so they are **not** re-derived and **not** used for any
+number in the current documents. Retained for provenance only.
+
+Two things a reader should know before quoting them:
+
+1. Both notes files cite a source CSV (`before_guardrails_guardrails.csv` and
+   `after_guardrails_guardrails.csv`) that **has never existed** in this
+   repository. Their numbers cannot be re-derived. Each notes file now carries
+   a provenance note to this effect.
+2. They predate the recorded-distance and chunk-id columns added in §2, so
+   there is nothing in them that could be reconciled with the current runs.
+
+Current, machine-computable scores live in `eval_results/v1_scoring_sheet.csv`
+(the `groundedness_score` column is intentionally left blank for a human to
+fill in) and in the generated `*_metrics.json` files.

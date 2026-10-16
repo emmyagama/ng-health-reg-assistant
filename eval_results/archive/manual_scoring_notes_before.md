@@ -2,6 +2,8 @@
 
 Source: `eval_results/before_guardrails_guardrails.csv` (run with stubs replaced by real embed_store + Groq).
 
+> **PROVENANCE NOTE (added 2026-10-16, when these notes were archived):** the cited source file `before_guardrails_guardrails.csv` has never existed in this repository. The numbers in this file cannot be re-derived and are retained as historical human judgement only.
+
 Scoring scale (applied to answerable questions only):
 
 - **1.00** — every factual claim is supported by the cited chunk(s); no omissions that materially change the answer.

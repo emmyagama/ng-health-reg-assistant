@@ -1,0 +1,30 @@
+{
+  "k": 5,
+  "questions": 50,
+  "rows_excluded_from_answer_metrics": 0,
+  "gold_questions": 22,
+  "retrieval": {
+    "recall_at_k": 0.35075757575757577,
+    "context_precision_at_k": 0.17272727272727273,
+    "mrr": 0.4659090909090909,
+    "document_level_hit_rate": 1.0,
+    "document_level_hits": 25,
+    "document_level_answerable": 25
+  },
+  "answers": {
+    "grounded_answer_rate": 0.72,
+    "answerable_questions": 25,
+    "refusal_correctness": 1.0,
+    "unanswerable_questions": 25,
+    "hallucination_rate": 0.0,
+    "citation_correctness": 0.6481481481481481,
+    "citations_total": 54,
+    "citations_correct": 35,
+    "citations_missing": 19
+  },
+  "shown_to_user": {
+    "answer": 18,
+    "model_refusal": 9,
+    "guardrail_refusal": 23
+  }
+}
