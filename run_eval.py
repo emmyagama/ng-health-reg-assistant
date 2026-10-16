@@ -531,6 +531,12 @@ def evaluate(
 
     rows = [rows_by_id[str(e["id"])] for e in golden if str(e["id"]) in rows_by_id]
 
+    # Final write: the in-loop crash-safe writes only cover questions whose
+    # row was (re)computed in this process. On a --resume run, rows carried
+    # forward join rows_by_id as the loop reaches them, so the last in-loop
+    # write can miss the resumed tail. Rewrite the complete CSV here.
+    _write_csv(csv_path, rows)
+
     # --- Run manifest (error rows excluded from every average) ------------
     failed_ids = [r["id"] for r in rows if r["status"] in PIPELINE_FAILURE_STATUSES]
     error_ids = [r["id"] for r in rows if r["status"] == "generation_error"]
