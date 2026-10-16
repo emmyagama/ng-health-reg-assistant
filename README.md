@@ -1,5 +1,7 @@
 # B1 — Nigerian Health-Regulation Q&A
 
+[![CI](https://github.com/emmyagama/ng-health-reg-assistant/actions/workflows/ci.yml/badge.svg)](https://github.com/emmyagama/ng-health-reg-assistant/actions/workflows/ci.yml)
+
 B1 is a small retrieval-augmented question-answering assistant that answers plain-language questions about Nigerian health-sector regulation. It is built on a fixed, hand-selected corpus of public documents: the Nigeria Data Protection Act 2023, the NDPC 2024 guidance notice on registration of data controllers of major importance, the National Health Insurance Authority Act 2022, the NHIA Operational Guidelines 2023, the HEFAMAA e-portal quick guide, the MLSCN national guidelines for setting up a medical laboratory, the National Health Act 2014, and the WHO Laboratory Quality Management System Handbook. It cites the document title and section for every factual claim, refuses rather than guesses when the answer is not in the corpus, and refuses clinical or medical-advice questions outright. Reliability is measured on a 50-question hand-built test set (25 answerable, 25 deliberately unanswerable) and every published number is generated from the committed run by `analysis/render_results.py`.
 
 ## Demo Video

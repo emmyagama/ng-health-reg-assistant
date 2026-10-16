@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Compile everything
+        run: python -m py_compile src/*.py *.py analysis/*.py scripts/*.py
+
+      # Neither self-test needs GROQ_API_KEY: guardrails.py is pure rules;
+      # answer.py runs its citation-regex tests first and catches the
+      # missing-key RuntimeError from generate_answer, exiting 0.
+      - name: Guardrails self-tests
+        run: python src/guardrails.py
+
+      - name: Answer self-tests (no API key required)
+        run: python src/answer.py
+
+      # Drift guard: the generated tables in README.md and
+      # notes/failure_modes.md must match a fresh render from the
+      # committed eval CSVs.
+      - name: Generated blocks are not stale
+        run: python analysis/render_results.py --check
