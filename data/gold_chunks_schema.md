@@ -14,16 +14,44 @@ and not a chunk the retriever happened to return.
   no evidence text in the file is a paraphrase.
 - **Verified by:** `scripts/validate_gold_chunks.py`, which asserts every
   `evidence` string is a verbatim substring of the chunk it cites. The last
-  run verified 62/62 evidence strings against 1,218 chunks.
-- **`gold_in_corpus: false`** means the answer is genuinely absent. Q20, Q21
-  and Q22 are marked this way: the NHIA Operational Guidelines 2023 are a
-  22-page scan whose OCR sidecar stops at the table of contents, so CSHIS,
-  HIUOR and the funding/accountability sections were never recovered.
-  Q26–Q30 are unanswerable by design (clinical or out-of-scope regulatory
-  questions) and correctly have no gold chunks.
+  run verified 63/63 evidence strings against 1,218 chunks.
+- **`gold_in_corpus: false`** means the answer is genuinely absent. Q20 and
+  Q21 are marked this way: the NHIA Operational Guidelines 2023 are a
+  22-page scan whose OCR sidecar stops at the table of contents, so CSHIS
+  and HIUOR were never recovered. Q22 straddles the gap — its funding half
+  is answered by the Act's own Part VII (recovered text), so Q22 carries
+  one gold chunk (`nhia_act_2022#0075`) and is included in the retrieval
+  metrics, while its accountability half still depends on guidance pages
+  that were never recovered. Q26–Q30 are unanswerable by design (clinical
+  or out-of-scope regulatory questions) and correctly have no gold chunks.
+- **Spot-check before trusting:** `scripts/spotcheck_gold.py` draws a
+  seeded random sample of gold entries and prints each evidence string in
+  the context of its chunk, for a human to tick off against the question.
+  It is the second-pass audit tool; `validate_gold_chunks.py` only checks
+  substrings.
 
 **Known limitation:** this set is agent-graded and has not been independently
 audited by a human. Spot-check a sample before citing any number derived
 from it. Where the source document contradicts itself (Q5: twelve clauses in
 section 4.0, "ten (10)" in appendix 3) both chunks are gold and the note says
 so.
+
+## Two evaluation-layer semantics this file feeds
+
+- **The answer taxonomy is classification-dependent.** The generated
+  failure register labels each question's outcome `answer`,
+  `guardrail_refusal`, `model_refusal`, or `unclassified_refusal_candidate`
+  from `shown_to_user` plus the answer text (`classify_shown_to_user` in
+  `run_eval.py`; unit-tested in `tests/test_classifier.py`). The fourth
+  bucket exists so that an off-script refusal — text that is neither the
+  mandated refusal sentence nor a substantive answer — fails loudly
+  instead of being silently counted as a refusal. On the frozen v1 run it
+  moves zero rows; the test that asserts this is
+  `test_frozen_run_classification_is_neutral`.
+- **Groundedness is scored per answer text, not per question id.** The
+  human sheet (`eval_results/v1_scoring_sheet.csv`) is joined into metrics
+  only for the run whose answer texts it was written against
+  (`SCORED_RUN_PREFIX` in `run_eval.py`). Blank means unscored, never
+  zero; the mean's denominator is the count of non-blank scores, and the
+  coverage is printed beside the mean. A refusal is never scored 0 — it is
+  judged by `refusal_correctness` / `hallucination_rate` instead.

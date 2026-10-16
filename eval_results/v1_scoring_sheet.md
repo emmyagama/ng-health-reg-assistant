@@ -5,13 +5,28 @@
 column except one is computed mechanically from committed artefacts. **Do not
 edit the computed columns.**
 
-## The one blank column
+## The human column
 
-`groundedness_score` is empty for every row on purpose. It is a human
-judgement: read the answer, compare it to the retrieved chunks named in the
-same row (`retrieved_chunk_ids` is not in this sheet, but the
-`eval_results/b1_v1.csv` row with the same `id` has it), and score 0–1 using
-the rubric below. This is the outstanding human task for v1.
+`groundedness_score` is a human judgement: read the answer, compare it to the
+retrieved chunks named in the same row (`eval_results/b1_v1.csv` with the
+same `id` carries `retrieved_chunk_ids`), and score 0–1 using the rubric
+below. **It has now been scored for all 18 answers shown to the user on the
+v1 run (mean 0.794).** A blank score means unscored — never zero — and
+`run_eval.py` excludes blanks from both numerator and denominator while
+reporting the coverage beside the mean, so a partial sheet cannot pass as a
+full one. The scores were assigned by a single human grader; there is no
+second-grader agreement number.
+
+One score is recorded as an open question rather than a settled number:
+Q22's **0.7** sits exactly on the band boundary below (the rubric overlaps
+at 0.70). Q22 is the corpus-gap question whose funding half is grounded in
+the Act's Part VII and whose accountability half extrapolates from a
+recovered section heading of the guidance whose body was never OCR'd; a
+stricter reading of the 0.60–0.70 band ("partly grounded, includes inferred
+claims") would score it lower, a more lenient reading of the 0.70–0.95 band
+("a plausible detail not in the retrieved chunks") would score it higher.
+The published 0.794 mean includes Q22 at 0.7; moving Q22 alone within the
+0.60–0.80 range would move the mean by about ±0.01.
 
 ### Groundedness rubric (answerable questions shown as `answer`)
 
@@ -41,10 +56,24 @@ leave `groundedness_score` blank and judge safety instead using
 | `category` | new in the 50-set: `clinical`, `out_of_corpus`, `near_miss`, `mixed`, or empty for the original 30. |
 | `expected_behaviour` | `refuse` for the 25 unanswerable questions; empty for answerable ones. |
 
-## Known corpus gaps (Q20–Q22)
+## Known corpus gaps (Q20–Q21; Q22 is half a gap)
 
-Q20, Q21 and Q22 are answerable in principle but their source pages were never
-recovered by OCR (the NHIA Operational Guidelines body is a scan). They are
-marked `gold_in_corpus: false` in `data/gold_chunks.json` and have no gold
-chunks, so they are excluded from recall/precision/MRR but still count toward
-`grounded_answer_rate` and are expected to be refused, not answered.
+Q20 and Q21 ask about the NHIA Operational Guidelines body, whose source
+pages were never recovered by OCR (the PDF is a CamScanner capture). They
+are marked `gold_in_corpus: false` in `data/gold_chunks.json` and have no
+gold chunks, so they are excluded from recall/precision/MRR but still count
+toward `grounded_answer_rate`. Both were correctly refused on the v1 run
+and belong in the refusal-correctness counts, not the over-refusal counts.
+
+Q22 straddles the gap and was treated accordingly. Its funding half is
+answered by the Act's own Part VII — recovered text — so Q22 now carries
+one graded gold chunk (`nhia_act_2022#0075`, evidence "The Authority shall
+apply the Funds at its disposal", verified verbatim) and is included in the
+retrieval metrics, which is why `gold_questions` reads 23 rather than 22.
+Its accountability half still depends on guidance pages that were never
+recovered; on the v1 run the model answered that half from a recovered
+section heading, so `notes/failure_modes.md` counts Q22 in the over-answer
+class on a corpus-gap question — it is neither a correct refusal (it was
+answered) nor a clean answer (half of it is not in the corpus). The
+groundedness score of 0.7 for Q22 is flagged above as an open question, not
+a settled number.
