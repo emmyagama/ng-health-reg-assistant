@@ -213,16 +213,14 @@ def ensure_ocr_sidecar(sid: str, path: Path) -> Path | None:
     if src_dir not in sys.path:
         sys.path.insert(0, src_dir)
     try:
-        import pymupdf
-
-        from ocr_scans import RapidOCR, extract_lines_from_result, ocr_pdf
+        from ocr_scans import RapidOCR, ocr_pdf
     except Exception as exc:  # noqa: BLE001
         print(f"  WARN [{sid}] OCR unavailable ({type(exc).__name__}: {exc}); "
               f"content verification will be inconclusive")
         return None
     try:
         engine = RapidOCR()
-        payload = ocr_pdf(pymupdf.open(str(path)), engine, 2.0)
+        payload = ocr_pdf(str(path), engine, 2.0)
         total = sum(len(p["text"]) for p in payload["pages"])
         OCR_DIR.mkdir(parents=True, exist_ok=True)
         sidecar.write_text(
