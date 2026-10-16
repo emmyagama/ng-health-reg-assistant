@@ -1,13 +1,26 @@
-requests
-pypdf
-sentence-transformers
-chromadb
-groq
-python-dotenv
-streamlit
-pandas
-numpy
-pymupdf
-rapidocr-onnxruntime
-svgwrite
-torchvision
+# Direct dependencies only, pinned. Transitive pins live in requirements.lock.txt.
+# Every package below is imported by code in this repository:
+#   requests                -> download_corpus.py
+#   pypdf                   -> src/chunker.py, src/ocr_scans.py
+#   pymupdf                 -> download_corpus.py, src/ocr_scans.py, scripts/inventory.py
+#   sentence-transformers   -> src/embed_store.py
+#   chromadb                -> src/embed_store.py
+#   groq                    -> src/answer.py, experiments/
+#   python-dotenv           -> src/answer.py, experiments/
+#   streamlit               -> app.py
+#   rapidocr-onnxruntime    -> src/ocr_scans.py
+#   svgwrite                -> generate_diagram.py
+# numpy, pandas and torchvision are deliberately absent:
+#   numpy/pandas are not imported anywhere here (streamlit/chromadb pull
+#   them in transitively - see requirements.lock.txt);
+#   torchvision was tested as unnecessary for SentenceTransformer and removed.
+requests==2.34.2
+pypdf==6.20.0
+pymupdf==1.28.2
+sentence-transformers==6.1.0
+chromadb==1.5.9
+groq==1.7.0
+python-dotenv==1.2.4
+streamlit==1.65.0
+rapidocr-onnxruntime==1.4.4
+svgwrite==1.4.3
