@@ -132,6 +132,47 @@ def _build_guardrail_refusal(refusal_reasons: list[str]) -> str:
     return "\n".join(lines)
 
 
+def _parse_retry_after(response) -> float | None:
+    """Read a Retry-After header (seconds form only) from a Groq response.
+
+    The HTTP-date form is ignored on purpose: callers only need a hint for
+    exponential backoff, and a date would require clock assumptions that are
+    not worth the risk of sleeping too long.
+    """
+    if response is None:
+        return None
+    try:
+        raw = response.headers.get("retry-after")
+    except Exception:  # noqa: BLE001 - header access must never mask the API error
+        return None
+    if raw is None:
+        return None
+    try:
+        seconds = float(raw)
+    except (TypeError, ValueError):
+        return None
+    return seconds if seconds >= 0 else None
+
+
+class GroqAPIError(RuntimeError):
+    """A Groq API failure that carries the HTTP status and Retry-After hint.
+
+    Subclasses RuntimeError so existing `except RuntimeError` callers keep
+    working; callers that need to decide whether to retry can read
+    `status_code` and `retry_after` instead of parsing the message.
+    """
+
+    def __init__(
+        self,
+        message: str,
+        status_code: int | None = None,
+        retry_after: float | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.status_code = status_code
+        self.retry_after = retry_after
+
+
 def generate_answer(
     question: str,
     retrieved_chunks: list[dict],
@@ -171,11 +212,16 @@ def generate_answer(
             temperature=0.1,  # low temperature for factual groundedness
         )
     except groq.AuthenticationError as e:
-        raise RuntimeError(f"Groq authentication failed: {e}") from e
+        raise GroqAPIError(f"Groq authentication failed: {e}") from e
     except groq.APIConnectionError as e:
-        raise RuntimeError(f"Could not reach Groq API: {e}") from e
+        raise GroqAPIError(
+            f"Could not reach Groq API: {e}", status_code=None) from e
     except groq.APIStatusError as e:
-        raise RuntimeError(f"Groq API error (HTTP {e.status_code}): {e.message}") from e
+        raise GroqAPIError(
+            f"Groq API error (HTTP {e.status_code}): {e.message}",
+            status_code=e.status_code,
+            retry_after=_parse_retry_after(getattr(e, "response", None)),
+        ) from e
 
     latency = time.perf_counter() - start
 
