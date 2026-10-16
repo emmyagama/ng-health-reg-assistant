@@ -30,13 +30,23 @@ from typing import Optional
 # explicitly sets via metadata={"hnsw:space": "l2"}.
 # -> LOWER distance = MORE similar. 0.0 means the query embedding is
 #    identical to the chunk embedding. Higher values = further apart.
-# The 0.8 default threshold should be CALIBRATED against real eval data
-# (e.g. inspect the distance distribution of known-good hits vs. known
-# misses in run_eval.py output) once available. For now it is a
-# reasonable starting point for all-MiniLM-L6-v2 embeddings.
+#
+# CALIBRATED DEFAULT (2026-10-16), source run eval_results/b1_v1.csv:
+#   15 answerable questions that retrieved a gold chunk had min distances
+#   0.331-0.782 (median 0.472); 25 unanswerable questions had min distances
+#   0.389-1.574 (median 1.010). Sweeping thresholds on the Youden index and
+#   balanced accuracy both maximise at 0.70 (J=0.827, bal=0.913); the old
+#   un-calibrated 0.80 scored J=0.760, letting 6/25 unanswerable questions
+#   through this check. At 0.70 this check alone refuses 24/25 unanswerable
+#   and would also refuse 2 answerable gold-hitting questions (Q7, Q15) —
+#   the measured, published cost. Full sweep and caveat:
+#   eval_results/threshold_calibration.md (regenerate: scripts/calibrate_thresholds.py).
+CALIBRATED_MAX_DISTANCE = 0.70
+
+
 def check_retrieval_confidence(
     retrieved_chunks: list[dict],
-    max_distance_threshold: float = 0.8,
+    max_distance_threshold: float = CALIBRATED_MAX_DISTANCE,
 ) -> tuple[bool, str]:
     """Pass if the closest retrieved chunk is within the distance threshold."""
     if not retrieved_chunks:
@@ -195,7 +205,7 @@ def check_clinical_question(question: str) -> tuple[bool, str]:
 def check_within_corpus(
     retrieved_chunks: list[dict],
     min_relevant_chunks: int = 1,
-    max_distance_threshold: float = 0.8,
+    max_distance_threshold: float = CALIBRATED_MAX_DISTANCE,
 ) -> tuple[bool, str]:
     """Fail if fewer than `min_relevant_chunks` chunks are plausibly
     close to the question."""
@@ -251,6 +261,36 @@ def apply_guardrails(
 # Self-tests when run directly
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
+    # Calibrated-value round-trip (§5.8): the default the orchestrator uses
+    # must be the recorded calibration, and it must refuse/allow at the
+    # boundary exactly as documented in threshold_calibration.md.
+    import inspect
+
+    _default_conf = inspect.signature(
+        check_retrieval_confidence).parameters["max_distance_threshold"].default
+    _default_within = inspect.signature(
+        check_within_corpus).parameters["max_distance_threshold"].default
+    assert CALIBRATED_MAX_DISTANCE == 0.70, "calibration record changed"
+    assert _default_conf == CALIBRATED_MAX_DISTANCE, (
+        f"check_retrieval_confidence default {_default_conf} != "
+        f"CALIBRATED_MAX_DISTANCE {CALIBRATED_MAX_DISTANCE}")
+    assert _default_within == CALIBRATED_MAX_DISTANCE, (
+        f"check_within_corpus default {_default_within} != "
+        f"CALIBRATED_MAX_DISTANCE {CALIBRATED_MAX_DISTANCE}")
+    _boundary = [
+        {"chunk_id": "c0", "doc_id": "d", "doc_title": "T",
+         "section_label": "S", "text": "...", "distance": CALIBRATED_MAX_DISTANCE}
+    ]
+    assert check_retrieval_confidence(_boundary)[0] is True, (
+        "distance == threshold must pass (<= semantics)")
+    assert check_retrieval_confidence(
+        [{"distance": CALIBRATED_MAX_DISTANCE + 0.01,
+          "chunk_id": "c1", "doc_id": "d", "doc_title": "T",
+          "section_label": "S", "text": "..."}])[0] is False, (
+        "distance just above threshold must fail")
+    print(f"calibration self-test OK: CALIBRATED_MAX_DISTANCE="
+          f"{CALIBRATED_MAX_DISTANCE} round-trips through both defaults")
+
     # Helper to build fake chunk lists quickly
     def chunks(dists):
         return [
