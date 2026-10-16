@@ -529,10 +529,17 @@
     "id": 22,
     "question": "How does NHIA govern funding for the authority and accountability mechanisms?",
     "expected_doc_id": "nhia_guidance_2023",
-    "gold_in_corpus": false,
-    "gold_chunks": [],
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "nhia_act_2022#0075",
+        "doc_id": "nhia_act_2022",
+        "section_label": "PART VII—FINANCIAL PROVISIONS",
+        "evidence": "The Authority shall apply the Funds at its disposal"
+      }
+    ],
     "graded_by": "agent",
-    "note": "Same corpus gap as Q20. 'FUNDINGFORTHEAUTHORITY' and 'ACCOUNTABILITYMECHANISM' exist only as table-of-contents headings; the sections themselves were never recovered by OCR."
+    "note": "Funding half answerable from the National Health Insurance Act 2022 (PART VII - FINANCIAL PROVISIONS, chunk nhia_act_2022#0075, in corpus; the model cited it correctly). Accountability half relies on the NHIA Operational Guidelines body that was never recovered by OCR. The answer asserts an accountability-enforcement link the retrieved chunks do not state, so Q22 is counted BOTH as a graded retrieval question (gold chunk above) and as a partial grounding failure - over-answer on a corpus-gap question. Q20 and Q21 remain gold_in_corpus: false; their evidence (CSHIS, HIUOR) is genuinely absent."
   },
   {
     "id": 23,
