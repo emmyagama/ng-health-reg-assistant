@@ -1,0 +1,666 @@
+[
+  {
+    "id": 1,
+    "question": "What does HEFAMAA require before a health facility can operate in Lagos State?",
+    "expected_doc_id": "hefamaa_requirements",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "hefamaa_requirements#0001",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works - e-HEFAMAA Portal Overview",
+        "evidence": "required to register to operate\ntheir facilities every year"
+      },
+      {
+        "chunk_id": "hefamaa_requirements#0005",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works – Form 1",
+        "evidence": "must be scanned and uploaded as provided in the portal"
+      },
+      {
+        "chunk_id": "hefamaa_requirements#0008",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works – Form 4",
+        "evidence": "CAC Registration Certificate\n• Current Tax Clearance Certificate\n• LAWMA Medical Certificate\n• Letter of Introduction from"
+      },
+      {
+        "chunk_id": "hefamaa_requirements#0012",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works – Generate Invoice",
+        "evidence": "Payment should be made to the bank account details\nstated on the invoice"
+      },
+      {
+        "chunk_id": "hefamaa_requirements#0014",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works – Registration Approval and Certificate",
+        "evidence": "A physical inspection is carried out on\nfirst-time applications"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Five separate requirements spread across the user guide: annual registration, letter of intent, documentary uploads, payment of the invoiced fee, and physical inspection of first-time applications."
+  },
+  {
+    "id": 2,
+    "question": "What documents must be uploaded during HEFAMAA facility registration?",
+    "expected_doc_id": "hefamaa_requirements",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "hefamaa_requirements#0005",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works – Form 1",
+        "evidence": "must be scanned and uploaded as provided in the portal"
+      },
+      {
+        "chunk_id": "hefamaa_requirements#0008",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works – Form 4",
+        "evidence": "UPLOAD DOCUMENTS\n• CAC Registration Certificate\n• Current Tax Clearance Certificate\n• LAWMA Medical Certificate\n• Letter of Introduction"
+      },
+      {
+        "chunk_id": "hefamaa_requirements#0010",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "NON-PROFESSIONAL STAFF COMPLEMENT",
+        "evidence": "Scan all the credentials for each professional into one PDF document"
+      },
+      {
+        "chunk_id": "hefamaa_requirements#0011",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "NON-PROFESSIONAL STAFF COMPLEMENT",
+        "evidence": "The maximum file size for each upload is 200KB"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Letter of intent (#0005), the UPLOAD DOCUMENTS list (#0008), professional credentials as one PDF each (#0010) and the 200KB per-file limit (#0011)."
+  },
+  {
+    "id": 3,
+    "question": "What categories of health facilities does HEFAMAA register?",
+    "expected_doc_id": "hefamaa_requirements",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "hefamaa_requirements#0004",
+        "doc_id": "hefamaa_requirements",
+        "section_label": "How it works – Facility Types",
+        "evidence": "Facility Types\n1. Hospital\n2. Clinic\n3. Eye Clinic"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Single chunk listing all 20 registered facility types."
+  },
+  {
+    "id": 4,
+    "question": "What are the minimum room dimensions for a primary-level medical laboratory in Nigeria?",
+    "expected_doc_id": "mlscn_guidelines",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "mlscn_guidelines#0014",
+        "doc_id": "mlscn_guidelines",
+        "section_label": "PRIMARY LABORATORY SECONDARY LABORATORY TERTIARY LABORATORY",
+        "evidence": "should not be\nless than 200m\nSpace\nOne room (5mx6m) or\n(16.4ft x19.7ft) which may\nbe partitioned as may be\nrequired.\nConvenience\nN/B:"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "One room of 5m x 6m (16.4ft x 19.7ft) is the primary-level minimum."
+  },
+  {
+    "id": 5,
+    "question": "How many Quality System Essentials must a medical laboratory implement under MLSCN guidelines?",
+    "expected_doc_id": "mlscn_guidelines",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "mlscn_guidelines#0017",
+        "doc_id": "mlscn_guidelines",
+        "section_label": "LABORATORY SERVICES",
+        "evidence": "that satisfies the requirement under the following twelve (12)\nclauses.\n1. Organization and Management\n2. Personnel\n3."
+      },
+      {
+        "chunk_id": "mlscn_guidelines#0046",
+        "doc_id": "mlscn_guidelines",
+        "section_label": "APPENDIX 3: QUALITY SYSTEM REQUIREMENTS FOR MEDICAL",
+        "evidence": "that satisfies the requirement under the following ten (10)\nclauses. This section provides guidance on the requirements of a"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "#0017 says twelve (12) clauses and lists them. #0046 is the appendix restatement and says 'ten (10)' while listing twelve — an inconsistency in the source document, kept as gold because it restates the same list."
+  },
+  {
+    "id": 6,
+    "question": "What qualifications are required to manage a medical laboratory in Nigeria?",
+    "expected_doc_id": "mlscn_guidelines",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "mlscn_guidelines#0020",
+        "doc_id": "mlscn_guidelines",
+        "section_label": "4.2 Personnel",
+        "evidence": "Laboratory Scientist and must be registered member of\nMLSCN. He or she will be responsible for duties related"
+      },
+      {
+        "chunk_id": "mlscn_guidelines#0037",
+        "doc_id": "mlscn_guidelines",
+        "section_label": "8.2 In areas where Medical Laboratory Scientists are not available a",
+        "evidence": "managed by a licensed Medical\nLaboratory Scientist certified by the Medical Laboratory Science\nCouncil of Nigeria"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Head of laboratory must be an experienced, MLSCN-registered Medical Laboratory Scientist (#0020, #0037); a certified technician may manage a primary lab only where scientists are unavailable, under supervision."
+  },
+  {
+    "id": 7,
+    "question": "What is the right to emergency treatment under Nigerian health law?",
+    "expected_doc_id": "national_health_act_2014",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "national_health_act_2014#0048",
+        "doc_id": "national_health_act_2014",
+        "section_label": "11 (1) Subject to any applicable law, the head of the health establishment",
+        "evidence": "shall not refuse a person emergency medical treatment for any\nreason"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Section 10 duty plus the N100,000 / six-month penalty. The 'reasonable cause' exception is defined in the interpretation section (#0120) but is not needed to state the right."
+  },
+  {
+    "id": 8,
+    "question": "How are health establishments classified and what standards apply?",
+    "expected_doc_id": "national_health_act_2014",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "national_health_act_2014#0120",
+        "doc_id": "national_health_act_2014",
+        "section_label": "Interpretation",
+        "evidence": "means a health establishment that is\nnot owned or controlled by an organ of state"
+      },
+      {
+        "chunk_id": "national_health_act_2014#0039",
+        "doc_id": "national_health_act_2014",
+        "section_label": "24 months from the date this Act took effect.",
+        "evidence": "The Certificate of Standards referred to in subsection (1) of this\nsection may be obtained by application"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Classification lives in the interpretation section (private vs public health establishment); the standard is the Certificate of Standards required before operating."
+  },
+  {
+    "id": 9,
+    "question": "What is the National Health System and which ministry is responsible?",
+    "expected_doc_id": "national_health_act_2014",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "national_health_act_2014#0010",
+        "doc_id": "national_health_act_2014",
+        "section_label": "PART 1 - RESPONSIBILITY FOR HEALTH AND ELIGIBILITY",
+        "evidence": "The National Health System shall include"
+      },
+      {
+        "chunk_id": "national_health_act_2014#0011",
+        "doc_id": "national_health_act_2014",
+        "section_label": "PART 1 - RESPONSIBILITY FOR HEALTH AND ELIGIBILITY",
+        "evidence": "ensure the development of national health policy and Issue\nguidelines"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Section 2(2) enumerates the members of the National Health System; section 3 lists the Federal Ministry of Health's functions."
+  },
+  {
+    "id": 10,
+    "question": "What are the lawful bases for processing personal data under Nigerian law?",
+    "expected_doc_id": "ndpa_2023",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "ndpa_2023#0051",
+        "doc_id": "ndpa_2023",
+        "section_label": "PROCESSING OF PERSONAL DATA",
+        "evidence": "to the principles set out in this Act, data\nprocessing shall be lawful, where —\n(a) the data subject has given and not withdrawn consent"
+      },
+      {
+        "chunk_id": "ndpa_2023#0052",
+        "doc_id": "ndpa_2023",
+        "section_label": "PROCESSING OF PERSONAL DATA",
+        "evidence": "for the performance of a contract to which the data subject is a\nparty"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Section 25(1): consent, then the five necessity grounds. Sensitive-data bases (section 30) are a separate list and were not counted as gold for this question."
+  },
+  {
+    "id": 11,
+    "question": "What rights does a data subject have under the Nigeria Data Protection Act?",
+    "expected_doc_id": "ndpa_2023",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "ndpa_2023#0074",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VI — RIGHTS OF A DATA SUBJECT",
+        "evidence": "A data subject has the right to obtain from a data controller"
+      },
+      {
+        "chunk_id": "ndpa_2023#0076",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VI — RIGHTS OF A DATA SUBJECT",
+        "evidence": "a copy of data subject’s personal data in a commonly used electronic\nformat, except to the extent that providing such data would"
+      },
+      {
+        "chunk_id": "ndpa_2023#0077",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VI — RIGHTS OF A DATA SUBJECT",
+        "evidence": "the erasure of personal data concerning the data subject, without\nundue delay"
+      },
+      {
+        "chunk_id": "ndpa_2023#0078",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VI — RIGHTS OF A DATA SUBJECT",
+        "evidence": "A data subject shall have the right to withdraw, at any time,\nconsent"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Right to confirmation/information (#0074), a copy in a commonly used electronic format (#0076), rectification/erasure/restriction (#0077) and withdrawal of consent plus objection (#0078)."
+  },
+  {
+    "id": 12,
+    "question": "How are cross-border transfers of personal data regulated in Nigeria?",
+    "expected_doc_id": "ndpa_2023",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "ndpa_2023#0092",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VIII — C ROSS-BORDER TRANSFERS OF PERSONAL DATA",
+        "evidence": "shall not transfer or permit\npersonal data to be transferred from Nigeria"
+      },
+      {
+        "chunk_id": "ndpa_2023#0094",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VIII — C ROSS-BORDER TRANSFERS OF PERSONAL DATA",
+        "evidence": "A level of protection is adequate for the purposes of this section"
+      },
+      {
+        "chunk_id": "ndpa_2023#0097",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VIII — C ROSS-BORDER TRANSFERS OF PERSONAL DATA",
+        "evidence": "In the absence of adequacy of protection under section"
+      },
+      {
+        "chunk_id": "ndpa_2023#0098",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VIII — C ROSS-BORDER TRANSFERS OF PERSONAL DATA",
+        "evidence": "shall only transfer personal data\nfrom Nigeria to another country if the"
+      },
+      {
+        "chunk_id": "ndpa_2023#0099",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VIII — C ROSS-BORDER TRANSFERS OF PERSONAL DATA",
+        "evidence": "transfer is necessary for important reasons of public interest"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Section 41 (no transfer without adequacy or a section 43 condition, and the basis must be recorded), section 42 (adequacy) and section 43 (the six alternative conditions)."
+  },
+  {
+    "id": 13,
+    "question": "What security obligations do data controllers have in Nigeria?",
+    "expected_doc_id": "ndpa_2023",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "ndpa_2023#0083",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VII — D A TA SECURITY",
+        "evidence": "shall implement appropriate\ntechnical and organisational measures to ensure the security, integrity and\nconfidentiality of personal data"
+      },
+      {
+        "chunk_id": "ndpa_2023#0084",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VII — D A TA SECURITY",
+        "evidence": "pseudonymisation or other methods of de-identification of personal\ndata"
+      },
+      {
+        "chunk_id": "ndpa_2023#0085",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VII — D A TA SECURITY",
+        "evidence": "regular testing, assessing, and evaluation of the effectiveness of the\nmeasures"
+      },
+      {
+        "chunk_id": "ndpa_2023#0087",
+        "doc_id": "ndpa_2023",
+        "section_label": "PART VII — D A TA SECURITY",
+        "evidence": "within 72 hours of becoming aware of a\nbreach"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Section 39: appropriate technical and organisational measures plus the risk factors and the enumerated measures; section 40 adds processor-to-controller notification and the 72-hour notification to the Commission."
+  },
+  {
+    "id": 14,
+    "question": "What fees must data controllers of major importance pay when registering with NDPC?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "ndpc_guidance_2024#0013",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "as follows:\n(a) Ultra-High Level (UHL) – the amount payable is N250,000. These are:\ni. Commercial banks operating at national or"
+      },
+      {
+        "chunk_id": "ndpc_guidance_2024#0014",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "Level (UHL).\n(c) Extra-High Level (EHL) – the amount payable is N100,000. These are:\ni. Ministries, Departments and Agencies (MDAs) of"
+      },
+      {
+        "chunk_id": "ndpc_guidance_2024#0015",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "(MDP-EHL).\n(e) Ordinary High Level (OHL) – the amount payable is N10,000. These are:\ni. Primary and Secondary Schools;\nii. Corporate"
+      },
+      {
+        "chunk_id": "ndpc_guidance_2024#0016",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "over Two-Hundred (200) data subjects but less than One-Thousand (1000)"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Registration fees by class: UHL N250,000, EHL N100,000, OHL N10,000. The separate N5,000 per-processor activity fee in paragraph 7 is not a registration fee and is not gold."
+  },
+  {
+    "id": 15,
+    "question": "What processing volume thresholds trigger designation as a data controller of major importance?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "ndpc_guidance_2024#0005",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "1. Designation of Data Controllers and Data Processors of Major Importance",
+        "evidence": "Processes the personal data of more than Two-Hundred (200) data subjects in six (6) months"
+      },
+      {
+        "chunk_id": "ndpc_guidance_2024#0014",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "over Five -Thousand (5,000) data subjects in six (6) months"
+      },
+      {
+        "chunk_id": "ndpc_guidance_2024#0015",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "over One-Thousand (1,000) data subjects but less than Five -Thousand (5,000)"
+      },
+      {
+        "chunk_id": "ndpc_guidance_2024#0016",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "over Two-Hundred (200) data subjects but less than One-Thousand (1000) within six (6)\nmonths"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "General designation threshold is >200 data subjects in six months (#0005); the class thresholds are >5,000 (UHL), 1,000-5,000 (EHL) and 200-1,000 (OHL)."
+  },
+  {
+    "id": 16,
+    "question": "What three categories does NDPC use for classifying major data controllers and processors?",
+    "expected_doc_id": "ndpc_guidance_2024",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "ndpc_guidance_2024#0007",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "2. Classification of Data Controllers and Data Processors of Major Importance",
+        "evidence": "The Commission classifies data controllers and data processors into three (3) levels"
+      },
+      {
+        "chunk_id": "ndpc_guidance_2024#0013",
+        "doc_id": "ndpc_guidance_2024",
+        "section_label": "3. Specific Types of Data Controllers and Data Processors and their Fees",
+        "evidence": "Specific Types of Data Controllers and Data Processors and their Fees"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "The three levels are named in #0007 and restated in #0013."
+  },
+  {
+    "id": 17,
+    "question": "What is the National Health Insurance Authority and what is its mandate?",
+    "expected_doc_id": "nhia_act_2022",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "nhia_act_2022#0009",
+        "doc_id": "nhia_act_2022",
+        "section_label": "1. There is established the National Health Insurance Authority (in this",
+        "evidence": "There is established the National Health Insurance Authority"
+      },
+      {
+        "chunk_id": "nhia_act_2022#0010",
+        "doc_id": "nhia_act_2022",
+        "section_label": "3. The Authority shall—",
+        "evidence": "2. The objects of the Authority are to—\n(a) promote, regulate and integrate health insurance schemes ;\n(b) improve and harness private"
+      },
+      {
+        "chunk_id": "nhia_act_2022#0011",
+        "doc_id": "nhia_act_2022",
+        "section_label": "3. The Authority shall—",
+        "evidence": "promote, support and collaborate with States through State health\ninsurance schemes"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Establishment (#0009), objects (#0010) and the functions list that runs into #0011."
+  },
+  {
+    "id": 18,
+    "question": "What is the Basic Health Care Provision Fund and how is it disbursed?",
+    "expected_doc_id": "nhia_act_2022",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "nhia_act_2022#0050",
+        "doc_id": "nhia_act_2022",
+        "section_label": "AND ESTABLISHMENT OF VULNERABLE GROUP FUND",
+        "evidence": "the Authority shall implement the\nBasic Health Care Provision Fund as set out in the National Health Act"
+      },
+      {
+        "chunk_id": "nhia_act_2022#0052",
+        "doc_id": "nhia_act_2022",
+        "section_label": "AND ESTABLISHMENT OF VULNERABLE GROUP FUND",
+        "evidence": "States health schemes shall be responsible for disbursements,\nmanagement of the Basic Health Care Provision Fund"
+      },
+      {
+        "chunk_id": "nhia_act_2022#0053",
+        "doc_id": "nhia_act_2022",
+        "section_label": "AND ESTABLISHMENT OF VULNERABLE GROUP FUND",
+        "evidence": "There is established the Vulnerable Group Fund"
+      },
+      {
+        "chunk_id": "nhia_act_2022#0058",
+        "doc_id": "nhia_act_2022",
+        "section_label": "PART IV—CONTRIBUTIONS UNDER HEALTH INSURANCE SCHEMES",
+        "evidence": "Contributions from the Federal Government for vulnerable persons\nshall be made from the Basic Health Care Provision Fund"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Section 24 implements the BHCPF; section 25(2)(a) makes the BHCPF a source of the Vulnerable Group Fund; #0052 puts disbursement and monitoring on the states; #0058 covers federal contributions for vulnerable persons."
+  },
+  {
+    "id": 19,
+    "question": "Is participation in health insurance mandatory in Nigeria?",
+    "expected_doc_id": "nhia_act_2022",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "nhia_act_2022#0037",
+        "doc_id": "nhia_act_2022",
+        "section_label": "PART II—TYPES OF HEALTH INSURANCE SCHEMES",
+        "evidence": "every person resident in\nNigeria shall be required to obtain health insurance"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Section 14(1)-(2): mandatory for every resident, with the resident categories."
+  },
+  {
+    "id": 20,
+    "question": "What is the Contributory Social Health Insurance Scheme (CSHIS) and who is eligible?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "The NHIA Operational Guidelines 2023 are a 22-page CamScanner capture whose OCR sidecar stops at the table of contents, foreword and abbreviations. 'CSHIS' occurs only as a heading in that table of contents; there is no definition, target population or financing text anywhere in the corpus."
+  },
+  {
+    "id": 21,
+    "question": "What is Health Insurance Under One Roof (HIUOR)?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "Same corpus gap as Q20. 'HIUOR' appears only as an abbreviation-list expansion ('Health Insurance Under OneRoof') in the OCR sidecar, with no explanation of the scheme."
+  },
+  {
+    "id": 22,
+    "question": "How does NHIA govern funding for the authority and accountability mechanisms?",
+    "expected_doc_id": "nhia_guidance_2023",
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "Same corpus gap as Q20. 'FUNDINGFORTHEAUTHORITY' and 'ACCOUNTABILITYMECHANISM' exist only as table-of-contents headings; the sections themselves were never recovered by OCR."
+  },
+  {
+    "id": 23,
+    "question": "According to WHO guidance, what is the quality management system model for laboratories?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "who_lab_quality_guidance#0021",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "58 avenue Debourg – 69007 Lyon – France",
+        "evidence": "organized into\nan understandable and workable\nstructure"
+      },
+      {
+        "chunk_id": "who_lab_quality_guidance#0029",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "58 avenue Debourg – 69007 Lyon – France",
+        "evidence": "all 12 quality system essentials must\nbe addressed"
+      },
+      {
+        "chunk_id": "who_lab_quality_guidance#0035",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "58 avenue Debourg – 69007 Lyon – France",
+        "evidence": "used in this handbook. This\nmodel is based on 12 quality system essentials, and is fully compatible with ISO\nlaboratory"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "CLSI quality management system model, compatible with ISO 15189, built on the 12 quality system essentials."
+  },
+  {
+    "id": 24,
+    "question": "What is the role of occurrence management in laboratory quality?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "who_lab_quality_guidance#0432",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "14. Occurrence",
+        "evidence": "Occurrence management is a central part of continual improvement"
+      },
+      {
+        "chunk_id": "who_lab_quality_guidance#0433",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "14. Occurrence",
+        "evidence": "An occurrence is any event that has a negative impact on an organization"
+      },
+      {
+        "chunk_id": "who_lab_quality_guidance#0441",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "14. Occurrence",
+        "evidence": "A cycle of events reflects the process of occurrence management"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Definition (#0432), what counts as an occurrence (#0433) and the investigate-correct-verify cycle (#0441)."
+  },
+  {
+    "id": 25,
+    "question": "How should a medical laboratory handle documents and records according to international standards?",
+    "expected_doc_id": "who_lab_quality_guidance",
+    "gold_in_corpus": true,
+    "gold_chunks": [
+      {
+        "chunk_id": "who_lab_quality_guidance#0491",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "16. Documents",
+        "evidence": "once the forms are used to record information, they\nbecome records"
+      },
+      {
+        "chunk_id": "who_lab_quality_guidance#0493",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "16. Documents",
+        "evidence": "In order to develop laboratory documents, it is important to\nunderstand each of these elements"
+      },
+      {
+        "chunk_id": "who_lab_quality_guidance#0499",
+        "doc_id": "who_lab_quality_guidance",
+        "section_label": "16. Documents",
+        "evidence": "A laboratory is\nrequired to have a quality manual for ISO accreditation"
+      }
+    ],
+    "graded_by": "agent",
+    "note": "Documents vs records (#0491), the policy/process/procedure hierarchy (#0493) and the ISO-required quality manual (#0499)."
+  },
+  {
+    "id": 26,
+    "question": "What is the correct antibiotic dosage for treating a severe Staphylococcus aureus infection in a 70kg adult?",
+    "expected_doc_id": null,
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "Clinical dosing advice. Out of scope by design: the corpus is regulatory and is expected to contain no antibiotic dosing. No gold chunks — a refusal is the correct behaviour."
+  },
+  {
+    "id": 27,
+    "question": "How should I diagnose acute malaria from a patient's symptoms without a rapid diagnostic test?",
+    "expected_doc_id": null,
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "Clinical diagnostic advice. Out of scope by design; the corpus contains no diagnostic algorithms. Refusal is correct."
+  },
+  {
+    "id": 28,
+    "question": "What medications should be prescribed to a pregnant woman with hypertension in her third trimester?",
+    "expected_doc_id": null,
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "Clinical prescribing advice. Out of scope by design. Refusal is correct."
+  },
+  {
+    "id": 29,
+    "question": "What is the corporate income tax rate for health maintenance organisations in Nigeria?",
+    "expected_doc_id": null,
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "Nigerian tax law, which is outside this corpus even though HMOs are a health-sector topic — the near-miss trap for a naive retriever. Refusal is correct."
+  },
+  {
+    "id": 30,
+    "question": "What visa and work-permit requirements apply to foreign doctors relocating to Nigeria?",
+    "expected_doc_id": null,
+    "gold_in_corpus": false,
+    "gold_chunks": [],
+    "graded_by": "agent",
+    "note": "Immigration and work-permit rules, outside the corpus. Refusal is correct."
+  }
+]
