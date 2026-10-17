@@ -26,7 +26,11 @@ time bash scripts/build.sh
 | `bash scripts/build.sh` | 11 min 3 s (663 s) |
 | **total** | **21 min 7 s (1267 s)** |
 
-Result: **`BUILD OK: 1218 chunks in 661s`**, exit code 0.
+Result: **`BUILD OK: 1218 chunks in 661s`**, exit code 0. (The external
+`time` read 663 s and the script's internal timer read 661 s; the two-second
+gap is the shell's startup and teardown around `build.sh`, not a second
+measurement of different work. The 663 s figure is the one in the table
+because it is what a stranger's `time` prints.)
 
 - Manual steps: **0**. One command after the install.
 - Corpus: 8/8 sources downloaded and content-verified against
