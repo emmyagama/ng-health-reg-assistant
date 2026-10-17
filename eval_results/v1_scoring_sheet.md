@@ -3,7 +3,9 @@
 `v1_scoring_sheet.csv` is generated from `eval_results/b1_v1.csv` (the clean
 50-question run of 2026-10-16) by `scripts/build_scoring_sheet.py`. Every
 column except one is computed mechanically from committed artefacts. **Do not
-edit the computed columns.**
+edit the computed columns.** To regenerate, always pass `--preserve-scores`:
+it carries the human scores across by id and refuses to write a sheet that
+would lose one (the bare script will not overwrite scored rows).
 
 ## The human column
 
