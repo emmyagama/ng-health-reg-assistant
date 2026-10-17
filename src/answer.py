@@ -32,7 +32,10 @@ import time
 from pathlib import Path
 from typing import Optional
 
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+except ImportError:  # bare clone without requirements installed:
+    load_dotenv = None  # the citation parser and self-tests are stdlib-only
 
 from guardrails import apply_guardrails
 
@@ -40,7 +43,8 @@ from guardrails import apply_guardrails
 # Load env
 # ---------------------------------------------------------------------------
 ROOT = Path(__file__).resolve().parent.parent
-load_dotenv(ROOT / ".env")
+if load_dotenv is not None:
+    load_dotenv(ROOT / ".env")
 
 
 # ---------------------------------------------------------------------------
