@@ -66,6 +66,65 @@ Caveats that a stranger should know about:
 - The bulk of the build time is the OCR of the 22-page NHIA scan
   (~7 min, CPU-only) and embedding 1,218 chunks (~1.5 min).
 
+## 2026-10-17 — second stranger test (post-fix, publication gate repeated)
+
+Run from the `b1-remediation` head after the v1.1.0 fixes were pushed, to
+re-prove the reproducibility claim on the final code — specifically the
+corpus-free `render_results.py --check`, which had failed on a bare clone
+in the first CI run. Same machine class, same commands as Phase 1, clone
+taken from GitHub (not from the author's disk):
+
+```bash
+git clone --depth 1 --branch b1-remediation https://github.com/emmyagama/ng-health-reg-assistant.git stranger
+cd stranger
+py -3.11 -m venv venv && ./venv/Scripts/python -m pip install -r requirements.txt
+PATH="$PWD/venv/Scripts:$PATH" bash scripts/build.sh
+python download_corpus.py --verify
+python src/guardrails.py && env -u GROQ_API_KEY python src/answer.py
+python analysis/render_results.py --check
+```
+
+| step | wall-clock |
+| --- | --- |
+| `git clone` | 4 s |
+| venv + `pip install -r requirements.txt` | 8 min 57 s (537 s) |
+| `bash scripts/build.sh` | 10 min 22 s (622 s external; 620 s internal) |
+| self-tests + `--check` | ~44 s |
+| **total (clone start → last command exit)** | **20 min 7 s (1207 s)** |
+
+Result: **`BUILD OK: 1218 chunks in 620s`**, exit code 0, and:
+
+- `data/raw/` and `data/processed/` were empty before the build (fresh clone,
+  nothing left behind by the author).
+- Corpus: **8/8 downloaded and content-verified** against
+  `data/corpus.lock.json`; `download_corpus.py --verify` re-verified **8/8**
+  with matching sha256 after the build.
+- Chunk count: **1,218** — identical to the author's machine and to the
+  Phase 1 stranger test, per-document counts unchanged.
+- Manual steps: **0**.
+- Self-tests: guardrails OK (including the calibration round-trip),
+  answer OK without `GROQ_API_KEY`, and **`render_results.py --check` OK on
+  the bare clone** — the failure that made the first CI run red.
+- Network conditions during this run: pip hit two transient DNS failures
+  and retried through them (the script's `--retries 10 --timeout 60`
+  weathered it); the Hugging Face model cache was cold, so the
+  `all-MiniLM-L6-v2` download (~90 MB) is inside the 622 s build time.
+
+### On the pre-merge audit's failed clone (HTTP 403)
+
+An independent clean-clone attempt during the pre-merge audit could not
+complete a build: three publisher endpoints (NDPA, NDPC guidance, WHO)
+returned `HTTP 403` and one source failed content verification. That was
+**third-party availability, not repository breakage** — the same code, on
+the same day class, downloaded and content-verified all 8/8 in the test
+above. The failure mode this repo is built for: every download is pinned
+by sha256 in `data/corpus.lock.json` and re-checked by
+`download_corpus.py --verify`, so a blocked or substituted PDF fails the
+build loudly instead of silently poisoning the corpus. The documented
+recovery for a persistently blocked endpoint is a manual download recorded
+in `data/sources.json` (`provenance: local`) with a note in
+`data/SOURCES_STATUS.md`.
+
 ## 2026-10-16 — clean-venv dependency audit
 
 `python -m venv` on Python 3.11.9, then `pip install -r requirements.txt`:
