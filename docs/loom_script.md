@@ -60,8 +60,9 @@ documented in `data/SOURCES_STATUS.md`.
 Screen: fresh clone in a temp directory (or reference
 `docs/reproduction_log.md` and show the build running).
 
-Say: one command sequence, zero manual steps, about 21 minutes to a
-verified 8/8 corpus and 1,218 chunks. The sha256 lockfile pins every
+Say: one command sequence, zero manual steps, about twenty minutes to a
+verified 8/8 corpus and 1,218 chunks — 20 min 7 s on the second stranger
+test, 21 min 7 s on the first. The sha256 lockfile pins every
 source; `download_corpus.py --verify` re-checks all eight. If you can
 clone and run this, the numbers above are yours to falsify.
 

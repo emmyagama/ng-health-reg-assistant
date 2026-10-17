@@ -37,7 +37,7 @@ B1 is a small retrieval-augmented question-answering assistant that answers plai
 - **The NHIA Operational Guidelines body is missing from the corpus.** The PDF is a CamScanner phone capture. Its text layer and the OCR sidecar together cover only the cover, table of contents, foreword, acknowledgements and glossary — the bodies of Sections 1–5 (CSHIS, HIUOR) were never recovered. Questions Q20 and Q21 ask about exactly that material and are correctly refused. Q22 straddles the gap: its funding half is answered by the Act's own Part VII (recovered, and now a graded gold chunk), so it was answered there, while its accountability half extrapolates from a recovered section heading in the guidance's front matter — the model was scored 0.7 (partly grounded) for this, and the failure register counts it as an over-answer on a corpus-gap question, not a clean answer. This is a corpus gap and a documented guardrail blind spot in one: the distance check sees a highly relevant Act chunk and the citation it quotes does exist in the retrieved set, so no guardrail can fire — target matching alone cannot see that a cited passage does not support the claim next to it.
 - **Passage-level retrieval is the weak layer.** Document-level hit rate is saturated at 25/25, but recall@5 against the chunk-level gold set is 0.379 and MRR is 0.454 (23 questions with graded gold chunks). Most over-refusals trace to the correct chunk missing the top five, not to the guardrails.
 - **Over-refusal on answerable questions.** 18 of 25 answerable questions are shown an answer. Of the 7 that are not, 2 are the documented corpus-gap questions (Q20, Q21) being refused as designed, and 5 are true over-refusals — all of them the model itself declining on weak retrieval (Q3, Q5, Q10, Q11, Q14), none of them a guardrail false positive in this run. The per-question split is in the generated failure-counts table in `notes/failure_modes.md`.
-- **Citation targets sometimes miss.** 5 of the 54 inline citations in displayed answers point at a title/section pair that is not in the retrieved set (citation correctness 0.907; the other 49 match). All 5 misses are genuine retrieval gaps, not parser misses — a citation-bracket parser fix (multi-comma Act titles were being split at the first comma) accounts for 14 of the 19 previous misses. These are measured and reported, not stripped at runtime — see "What I'd Do Next".
+- **Citation targets sometimes miss.** 5 of the 54 inline citations in displayed answers fail to match a retrieved title/section pair (citation correctness 0.907; the other 49 match). Four of the 5 are genuine retrieval gaps; the fifth (Q16) is a chunk-label artefact that makes the metric understate correctness by one — the cited chunk was retrieved, but the stored label is truncated and the citation carries a tail the label never has. The earlier parser defect (multi-comma Act titles split at the first comma) accounted for 14 of the previous 19 misses. These are measured and reported, not stripped at runtime — see "What I'd Do Next".
 - **The system depends on the Groq free tier.** End-to-end latency on the v1 run averages ~6.5 s per question. Bulk runs hit connection errors or 429s; the harness retries with jitter and `--resume` completes the run, but a fresh full run takes several minutes and a working network.
 
 ## Evaluation Results
@@ -88,18 +88,20 @@ Notes on the numbers:
 
 Requires Python 3.10–3.12 (the OCR dependency `rapidocr-onnxruntime` has no wheel for 3.13+) and a Groq API key (free tier works fine — get one at https://console.groq.com/keys).
 
-One command builds everything from a fresh clone — download (with content verification against `data/corpus.lock.json`), OCR sidecars for textless PDFs, chunking, embedding — and was measured end-to-end by a stranger test at 21 minutes, zero manual steps (see `docs/reproduction_log.md`):
+One command builds everything from a fresh clone — download (with content verification against `data/corpus.lock.json`), OCR sidecars for textless PDFs, chunking, embedding — and was measured end-to-end twice by stranger tests from a fresh GitHub clone: the second run (2026-10-17, on the v1.1.0 head) finished in **20 min 7 s** with zero manual steps, and the first run (2026-10-16, the Phase 1 publication gate on the then-active `b1-remediation` branch) took 21 min 7 s (both in `docs/reproduction_log.md`):
 
 ```bash
 bash scripts/build.sh
 ```
+
+Corpus-acquisition caveat: the corpus is pinned by SHA-256 and content-verified against document-specific markers. On the author's machine all eight sources resolve directly and the full build was measured end to end. Two hosts (`ndpc.gov.ng`, `iris.who.int`) are known to refuse datacentre IP ranges; where a source cannot be fetched, `download_corpus.py` exits non-zero and names it rather than silently substituting a non-PDF, and `data/SOURCES_STATUS.md` records the observation date, the status per source, and the manual-placement path with expected hashes.
 
 Or step by step:
 
 1. Clone the repository and change into it:
 
    ```bash
-   git clone --branch b1-remediation <repo-url> b1
+   git clone <repo-url> b1
    cd b1
    ```
 

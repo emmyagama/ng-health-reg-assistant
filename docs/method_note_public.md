@@ -50,8 +50,9 @@ On the clean run:
   reached the user. Before the guardrails existed, the raw model
   produced two — both clinical-flavoured, both intercepted.
 - **Citation correctness is 0.907**: 49 of 54 inline citations point at
-  a section that was actually in the provided context. The five misses
-  are retrieval gaps, not formatting noise.
+  a section that was actually in the provided context. Four of the five
+  misses are retrieval gaps; the fifth (Q16) is a chunk-label artefact
+  that makes the metric understate correctness by one.
 - **Per-claim groundedness was scored by hand for every answer shown to
   the user**: mean 0.794 over 18 of 18. Refusals are not scored as
   zeroes; a refusal is judged by whether refusing was right.

@@ -1,5 +1,43 @@
 # Changelog
 
+## v1.1.1 (2026-10-17)
+
+**Fixes three artefacts around the v1.1.0 release — no measurement changes.**
+
+`eval_results/b1_v1.csv` stays byte-identical to v1.0.0 (gate:
+`git diff 9ffba84 HEAD -- eval_results/b1_v1.csv` is empty); no evaluation was
+re-run, no number published under v1.1.0 moves. What v1.1.1 corrects:
+
+1. **`data/corpus.lock.json` provenance.** The committed lock recorded
+   `provenance: local` for all eight sources — the manual-download path —
+   contradicting the zero-manual-steps build claim. `download_corpus.py`
+   stamps `url` only on the download branch, so a populated `data/raw/`
+   re-wrote `local`. The lock was regenerated from a clean GitHub clone with
+   an empty `data/raw/` (then `--status` and `--verify`): all eight
+   `provenance: url`, 8/8 sha256 + content-marker verification,
+   `data/SOURCES_STATUS.md` rebuilt from the new lock. The PDFs are
+   sha256-pinned, so 1,218 chunks could not move — and did not.
+2. **`eval_results/v1_scoring_sheet.csv` was a full generation stale.** Its
+   citation columns read 35/19 (the release publishes 49/5) and Q22's gold
+   columns were blank. `scripts/build_scoring_sheet.py` gained
+   `--preserve-scores` — carry `groundedness_score` across by id, write to a
+   temp path, assert, replace; without the flag it refuses to overwrite
+   scored rows — and is now corpus-free. Verified after rebuild: 18 scores
+   preserved, mean 0.7944444444444444, shown citations 54/49/5, Q22 gold
+   1/1/5, answerable gold_total 63; recompute-only and
+   `render_results.py --check` unchanged (groundedness block untouched).
+3. **Three claim corrections.** `docs/method_note.md`,
+   `docs/method_note_public.md` and README no longer say all five citation
+   misses are retrieval gaps: four are; the fifth (Q16) is a chunk-label
+   artefact that makes the metric understate correctness by one. README
+   names the run behind its build-time claim (20 min 7 s, the second
+   stranger test at the v1.1.0 head, instead of an unattributed "21
+   minutes") and drops the deleted `--branch b1-remediation` clone command.
+   The corpus-acquisition environment caveat (two hosts known to refuse
+   datacentre IPs, loud non-zero exit instead of a substitute PDF, manual-
+   placement path recorded with expected hashes) was added to README, the
+   evidence pack §8, and the reproduction log.
+
 ## v1.1.0 (2026-10-17)
 
 **B1 v1.1.0 — the post-audit fix release: corrected claims, a scored groundedness column, and a CI that passes on a bare clone.**
@@ -17,10 +55,11 @@ v1.0.0 run — no question was re-asked, no answer was edited.
   "National Health Insurance Authority Act"). It now resolves titles
   against `data/sources.json` before any split. This is a measurement
   fix, not a behaviour fix: 14 of the 19 previously-missing citations were
-  the parser's own error. The 5 real misses (Q1, Q6, Q16, Q24) are
-  genuine retrieval gaps, listed per question in the failure register;
-  one of them (Q16) is a chunk-label truncation artefact that makes the
-  metric overcount by one, and it is left that way rather than tuned.
+  the parser's own error. Of the 5 misses that remain (Q1, Q6, Q16, Q24)
+  four are genuine retrieval gaps, listed per question in the failure
+  register; the fifth (Q16) is a chunk-label truncation artefact that makes
+  the metric overcount the misses by one (understating correctness by one),
+  and it is left that way rather than tuned.
 - **Recall@5 0.351 → 0.379, MRR 0.466 → 0.454, gold questions 22 → 23.**
   Q22's question had two halves; its funding half is answered by the
   NHIA Act's own Part VII, which is recovered text the retriever did

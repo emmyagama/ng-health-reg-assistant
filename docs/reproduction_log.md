@@ -5,6 +5,17 @@ Times are from the `b1-remediation` branch on a Windows 10 machine with an
 otherwise normal developer environment (Git Bash, Python 3.11.9, ~40 Mbit/s
 home broadband). They are measurements, not estimates.
 
+## Standing note — environment caveat (corpus acquisition)
+
+The corpus is pinned by SHA-256 and content-verified against document-specific
+markers. On the author's machine all eight sources resolve directly and the
+full build was measured end to end. Two hosts (`ndpc.gov.ng`, `iris.who.int`)
+are known to refuse datacentre IP ranges; where a source cannot be fetched,
+`download_corpus.py` exits non-zero and names it rather than silently
+substituting a non-PDF, and `data/SOURCES_STATUS.md` records the observation
+date, the status per source, and the manual-placement path with expected
+hashes.
+
 ## 2026-10-16 — Phase 1 stranger test (the publication gate)
 
 Commands run, in order, from a clean state:
