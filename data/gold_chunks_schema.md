@@ -54,4 +54,8 @@ so.
   (`SCORED_RUN_PREFIX` in `run_eval.py`). Blank means unscored, never
   zero; the mean's denominator is the count of non-blank scores, and the
   coverage is printed beside the mean. A refusal is never scored 0 — it is
-  judged by `refusal_correctness` / `hallucination_rate` instead.
+  judged by `refusal_correctness` / `hallucination_rate` instead. The
+  score is faithfulness (every claim sticks to the retrieved text), not
+  correctness (the law stated right) and not citation correctness (the
+  label matched) — Q16's 0.60 sits beside a citation miss that is itself
+  a label artefact, three different judgements on one answer.
